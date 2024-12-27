@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Tree Saengja</title>
+    <meta
+      name="description"
+      content="Research Assistant at Vision and Learning Lab"
+    />
+    <meta name="author" content="Tossaporn Saengja" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="thumbnail"
+      content="https://tj-14.github.io/assets/yellow.webp"
+    />
+    <link rel="icon" href="https://tj-14.github.io/assets/yellow.webp" />
+    <meta property="og:title" content="Tree Saengja" />
+    <meta
+      property="og:description"
+      content="Research Assistant at Vision and Learning Lab"
+    />
+    <meta
+      property="og:image"
+      content="https://tj-14.github.io/assets/tossaporn.webp"
+    />
+    <meta property="og:url" content="https://tj-14.github.io" />
+    <meta http-equiv="content-security-policy" content="">
+		<link href="../../../../_app/immutable/assets/_layout-269e78f2.css" rel="stylesheet">
+		<link rel="modulepreload" href="../../../../_app/immutable/start-a0a27161.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/index-6d7442bc.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/singletons-3d8b0d2a.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/components/pages/_layout.svelte-05b8315f.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/stores-47666cc8.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/modules/pages/_layout.js-01894052.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/_layout-ca604eb6.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/components/pages/writing/competitive-programming-starter/_layout.svelte-505be075.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/components/pages/writing/competitive-programming-starter/data-structure/linked-list/_page.svelte-fd3fda65.js"><title>Linked List</title><!-- HEAD_svelte-1jglpj1_START --><!-- HEAD_svelte-1jglpj1_END -->
+  </head>
+  <body data-sveltekit-preload-data="hover">
+    <div style="display: contents">
+<article><header><b>Tossaporn Saengja</b>
+    <nav><span><a href="/">home</a> &gt; </span><span><a href="/writing">writing</a> &gt; </span><span><a href="/writing/competitive-programming-starter">competitive-programming-starter</a> &gt; </span><span>linked-list</span></nav></header>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css" integrity="sha384-Xi8rHCmBmhbuyyhbI88391ZKP2dmfnOl4rT9ZfRI7mLTdk1wblIUnrIq35nqwEvC" crossorigin="anonymous">
+<link href="/assets/themes/prism-gruvbox-light.css" rel="stylesheet">
+
+
+
+<h1>Linked List</h1>
+<h2>คำอธิบาย</h2>
+<ul><li>linked list เป็นโครงสร้างข้อมูลเชิงเส้น โดยข้อมูลนั้นไม่จำเป็นต้องอาศัยอยู่ในหน่วยความจำที่ตำแหน่งติดกัน</li>
+<li>ข้อมูลใน linked list ถูกเชื่อมต่อกันด้วย pointers ดังรูปด้านล่าง</li></ul>
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/6/6d/Singly-linked-list.svg"></p>
+<p><a href="https://upload.wikimedia.org/wikipedia/commons/6/6d/Singly-linked-list.svg" rel="nofollow">https://upload.wikimedia.org/wikipedia/commons/6/6d/Singly-linked-list.svg</a></p>
+<ul><li>จากรูปจะมีข้อมูลสามชุด ซึ่งเราเรียกว่า <strong>node</strong><ul><li>ใน node แรกจะเก็บเลข 12 และ pointer ที่ชี้ node ถัดไป</li>
+<li>node ที่สองเก็บเลข 99 และ pointer ที่ชี้ node ถัดไป</li>
+<li>node ที่สามเก็บเลข 37 และ pointer ซึ่งยังไม่ได้ชี้ node อื่น</li></ul></li></ul>
+<h2>Singly Linked List</h2>
+<ul><li>เป็น linked list ประเภทที่ง่ายที่สุด</li>
+<li>โดยหนึ่ง node จะเก็บข้อมูล และ pointer เพื่อชี้ตำแหน่งของ node ถัดไป</li></ul>
+<h2>ตัวอย่างการ implement singly linked list</h2>
+<ul><li>โดยสร้าง struct Node เพื่อเก็บข้อมูล</li></ul>
+<pre class="language-cpp"><!-- HTML_TAG_START --><code class="language-cpp"><span class="token comment">// A simple CPP program to introduce</span>
+<span class="token comment">// a linked list</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;bits/stdc++.h></span></span>
+<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
+
+<span class="token comment">// A linked list node</span>
+<span class="token keyword">struct</span> <span class="token class-name">Node</span> <span class="token punctuation">&#123;</span>
+  <span class="token keyword">int</span> data<span class="token punctuation">;</span>
+  <span class="token keyword">struct</span> <span class="token class-name">Node</span> <span class="token operator">*</span>next<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  <span class="token comment">// Program to create a simple linked</span>
+  <span class="token comment">// list with 3 nodes</span>
+  Node <span class="token operator">*</span>head <span class="token operator">=</span> <span class="token constant">NULL</span><span class="token punctuation">;</span>
+  Node <span class="token operator">*</span>second <span class="token operator">=</span> <span class="token constant">NULL</span><span class="token punctuation">;</span>
+  Node <span class="token operator">*</span>third <span class="token operator">=</span> <span class="token constant">NULL</span><span class="token punctuation">;</span>
+
+  <span class="token comment">// allocate 3 nodes in the heap</span>
+  head <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token function">Node</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  second <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token function">Node</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  third <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token function">Node</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token comment">/* Three blocks have been allocated dynamically.
+     We have pointers to these three blocks as head,
+     second and third
+     head         second         third
+     |             |             |
+     |             |             |
+     +----+----+   +----+----+   +----+----+
+     | #  |  # |   | #  | #  |   | #  | #  |
+     +----+----+   +----+----+   +----+----+
+
+  # represents any random value.
+  Data is random because we haven’t assigned
+  anything yet */</span>
+
+  head<span class="token operator">-></span>data <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>      <span class="token comment">// assign data in first node</span>
+  head<span class="token operator">-></span>next <span class="token operator">=</span> second<span class="token punctuation">;</span> <span class="token comment">// Link first node with</span>
+  <span class="token comment">// the second node</span>
+
+  <span class="token comment">/* data has been assigned to the data part of first
+     block (block pointed by the head). And next
+     pointer of the first block points to second.
+     So they both are linked.
+
+     head         second         third
+     |             |             |
+     |             |             |
+     +---+---+     +----+----+   +-----+----+
+     | 1 | o-----> | #  | #  |   | #   | #  |
+     +---+---+     +----+----+   +-----+----+
+   */</span>
+
+  <span class="token comment">// assign data to second node</span>
+  second<span class="token operator">-></span>data <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">;</span>
+
+  <span class="token comment">// Link second node with the third node</span>
+  second<span class="token operator">-></span>next <span class="token operator">=</span> third<span class="token punctuation">;</span>
+
+  <span class="token comment">/* data has been assigned to the data part of the second
+     block (block pointed by second). And next
+     pointer of the second block points to the third
+     block. So all three blocks are linked.
+
+     head         second         third
+     |             |             |
+     |             |             |
+     +---+---+     +---+---+     +----+----+
+     | 1 | o-----> | 2 | o-----> | #  | #  |
+     +---+---+     +---+---+     +----+----+     */</span>
+
+  third<span class="token operator">-></span>data <span class="token operator">=</span> <span class="token number">3</span><span class="token punctuation">;</span> <span class="token comment">// assign data to third node</span>
+  third<span class="token operator">-></span>next <span class="token operator">=</span> <span class="token constant">NULL</span><span class="token punctuation">;</span>
+
+  <span class="token comment">/* data has been assigned to the data part of the third
+     block (block pointed by third). And next pointer
+     of the third block is made NULL to indicate
+     that the linked list is terminated here.
+
+     We have the linked list ready.
+
+     head
+     |
+     |
+     +---+---+     +---+---+     +----+------+
+     | 1 | o-----> | 2 | o-----> | 3  | NULL |
+     +---+---+     +---+---+     +----+------+
+
+     Note that only the head is sufficient to represent
+     the whole list. We can traverse the complete
+     list by following the next pointers. */</span>
+
+  <span class="token keyword">while</span> <span class="token punctuation">(</span>head <span class="token operator">!=</span> <span class="token constant">NULL</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d "</span><span class="token punctuation">,</span> head<span class="token operator">-></span>data<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    head <span class="token operator">=</span> head<span class="token operator">-></span>next<span class="token punctuation">;</span>
+  <span class="token punctuation">&#125;</span>
+
+  <span class="token comment">// This code is contributed by rathbhupendra</span>
+<span class="token punctuation">&#125;</span></code><!-- HTML_TAG_END --></pre>
+<h2>Operations</h2>
+<ul><li>insert การเพิ่มข้อมูลใน linked list โดย<ul><li>สร้าง node ใหม่ชื่อว่า newNode (37)</li>
+<li>นำ pointer ของโหนดตำแหน่งก่อนหน้าที่ต้องการจะแทรก (12) ชี้ไปที่ newNode (37)</li>
+<li>นำ pointer ของ newNode ไปชี้ที่ pointer ของโหนดตำแหน่งก่อนหน้าเคยชี้ (99)</li></ul></li></ul>
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/CPT-LinkedLists-addingnode.svg/474px-CPT-LinkedLists-addingnode.svg.png" alt="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/CPT-LinkedLists-addingnode.svg/474px-CPT-LinkedLists-addingnode.svg.png"></p>
+<ul><li>delete การลบข้อมูลใน linked list โดย<ul><li>นำ pointer ของโหนดตำแหน่งก่อนหน้าที่ต้องการจะลบ (12) ชี้ข้ามไปที่ node ในตำแหน่งถัดไป (37)</li></ul></li></ul>
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/CPT-LinkedLists-deletingnode.svg/380px-CPT-LinkedLists-deletingnode.svg.png" alt="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/CPT-LinkedLists-deletingnode.svg/380px-CPT-LinkedLists-deletingnode.svg.png"></p>
+<h2>Doubly Linked List</h2>
+<ul><li>เป็น linked list ที่มีความซับซ้อนเพิ่มขึ้นนิดหนึ่งโดย</li>
+<li>node จะเก็บ pointers สองตำแหน่งสำหรับโหนดก่อนหน้า <strong>prev</strong> และโหนดถัดไป <strong>next</strong></li></ul>
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Doubly-linked-list.svg/610px-Doubly-linked-list.svg.png" alt="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Doubly-linked-list.svg/610px-Doubly-linked-list.svg.png"></p>
+<pre class="language-cpp"><!-- HTML_TAG_START --><code class="language-cpp"><span class="token comment">// linked.c</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;bits/stdc++.h></span></span>
+<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
+
+<span class="token comment">// what a node look like internally</span>
+<span class="token keyword">struct</span> <span class="token class-name">Node</span> <span class="token punctuation">&#123;</span>
+  <span class="token keyword">int</span> idx<span class="token punctuation">;</span>
+  <span class="token keyword">struct</span> <span class="token class-name">Node</span> <span class="token operator">*</span>r_next<span class="token punctuation">;</span>
+  <span class="token keyword">struct</span> <span class="token class-name">Node</span> <span class="token operator">*</span>r_prev<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  <span class="token comment">// define 3 nodes</span>
+  <span class="token keyword">struct</span> <span class="token class-name">Node</span> n0<span class="token punctuation">,</span> n1<span class="token punctuation">,</span> n2<span class="token punctuation">;</span>
+
+  <span class="token comment">// initialize the nodes</span>
+  n0<span class="token punctuation">.</span>idx <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>       <span class="token comment">// the first node has an index of 0</span>
+  n0<span class="token punctuation">.</span>r_next <span class="token operator">=</span> <span class="token operator">&amp;</span>n1<span class="token punctuation">;</span>  <span class="token comment">// with a reference to the second node</span>
+  n0<span class="token punctuation">.</span>r_prev <span class="token operator">=</span> <span class="token constant">NULL</span><span class="token punctuation">;</span> <span class="token comment">// and a reference to NULL b/c there's no previous node</span>
+
+  n1<span class="token punctuation">.</span>idx <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+  n1<span class="token punctuation">.</span>r_next <span class="token operator">=</span> <span class="token operator">&amp;</span>n2<span class="token punctuation">;</span>
+  n1<span class="token punctuation">.</span>r_prev <span class="token operator">=</span> <span class="token operator">&amp;</span>n0<span class="token punctuation">;</span>
+
+  n2<span class="token punctuation">.</span>idx <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">;</span>
+  n2<span class="token punctuation">.</span>r_next <span class="token operator">=</span> <span class="token constant">NULL</span><span class="token punctuation">;</span>
+  n2<span class="token punctuation">.</span>r_prev <span class="token operator">=</span> <span class="token operator">&amp;</span>n1<span class="token punctuation">;</span>
+
+  <span class="token comment">// create a new reference to n0 called r_first_element</span>
+  <span class="token keyword">struct</span> <span class="token class-name">Node</span> <span class="token operator">*</span>r_first_element <span class="token operator">=</span> <span class="token operator">&amp;</span>n0<span class="token punctuation">;</span>
+  <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"The first node lives @ %p&#92;n"</span><span class="token punctuation">,</span> r_first_element<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"The first node has idx: %d&#92;n"</span><span class="token punctuation">,</span> r_first_element<span class="token operator">-></span>idx<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token comment">// print n1 info</span>
+  <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"The second node lives @ %p&#92;n"</span><span class="token punctuation">,</span> r_first_element<span class="token operator">-></span>r_next<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"The second node has idx: %d&#92;n"</span><span class="token punctuation">,</span> r_first_element<span class="token operator">-></span>r_next<span class="token operator">-></span>idx<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token comment">// print n2 info</span>
+  <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"The third node lives @ %p&#92;n"</span><span class="token punctuation">,</span> r_first_element<span class="token operator">-></span>r_next<span class="token operator">-></span>r_next<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"The third node has idx: %d&#92;n"</span><span class="token punctuation">,</span> r_first_element<span class="token operator">-></span>r_next<span class="token operator">-></span>r_next<span class="token operator">-></span>idx<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span></code><!-- HTML_TAG_END --></pre></article>
+
+		<script type="module" data-sveltekit-hydrate="1nwlxqb">
+			import { start } from "../../../../_app/immutable/start-a0a27161.js";
+
+			start({
+				env: {},
+				paths: {"base":"","assets":""},
+				target: document.querySelector('[data-sveltekit-hydrate="1nwlxqb"]').parentNode,
+				version: "1730165720844",
+				hydrate: {
+					node_ids: [0, 2, 20],
+					data: [null,null,null],
+					form: null
+				}
+			});
+		</script>
+	</div>
+  </body>
+</html>

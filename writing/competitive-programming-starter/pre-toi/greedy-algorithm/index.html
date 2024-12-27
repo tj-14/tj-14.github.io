@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Tree Saengja</title>
+    <meta
+      name="description"
+      content="Research Assistant at Vision and Learning Lab"
+    />
+    <meta name="author" content="Tossaporn Saengja" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="thumbnail"
+      content="https://tj-14.github.io/assets/yellow.webp"
+    />
+    <link rel="icon" href="https://tj-14.github.io/assets/yellow.webp" />
+    <meta property="og:title" content="Tree Saengja" />
+    <meta
+      property="og:description"
+      content="Research Assistant at Vision and Learning Lab"
+    />
+    <meta
+      property="og:image"
+      content="https://tj-14.github.io/assets/tossaporn.webp"
+    />
+    <meta property="og:url" content="https://tj-14.github.io" />
+    <meta http-equiv="content-security-policy" content="">
+		<link href="../../../../_app/immutable/assets/_layout-269e78f2.css" rel="stylesheet">
+		<link rel="modulepreload" href="../../../../_app/immutable/start-a0a27161.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/index-6d7442bc.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/singletons-3d8b0d2a.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/components/pages/_layout.svelte-05b8315f.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/stores-47666cc8.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/modules/pages/_layout.js-01894052.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/_layout-ca604eb6.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/components/pages/writing/competitive-programming-starter/_layout.svelte-505be075.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/components/pages/writing/competitive-programming-starter/pre-toi/greedy-algorithm/_page.svelte-d016d547.js"><title>Greedy</title><!-- HEAD_svelte-9bd6zo_START --><!-- HEAD_svelte-9bd6zo_END -->
+  </head>
+  <body data-sveltekit-preload-data="hover">
+    <div style="display: contents">
+<article><header><b>Tossaporn Saengja</b>
+    <nav><span><a href="/">home</a> &gt; </span><span><a href="/writing">writing</a> &gt; </span><span><a href="/writing/competitive-programming-starter">competitive-programming-starter</a> &gt; </span><span>greedy-algorithm</span></nav></header>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css" integrity="sha384-Xi8rHCmBmhbuyyhbI88391ZKP2dmfnOl4rT9ZfRI7mLTdk1wblIUnrIq35nqwEvC" crossorigin="anonymous">
+<link href="/assets/themes/prism-gruvbox-light.css" rel="stylesheet">
+
+
+
+<h1>Greedy</h1>
+<h2>หลักการ</h2>
+<ul><li>วิธีคิดสำหรับปัญหา optimization โดยทั่วไปแล้วจะมีขั้นตอน ซึ่งแต่ละขั้นจะมีตัวเลือกที่แตกต่างกันไป</li>
+<li>สำหรับหลายๆ ปัญหา optimization อาจจะไม่จำเป็นต้องใช้ dynamic programming เพื่อตัดสินตัวเลือกที่ดีที่สุด</li>
+<li>วิธีคิดแบบ greedy จะเลือกตัวเลือกที่ดีที่สุดในขณะนั้นๆ เสมอ โดยหวังว่าการเลือกตัวเลือกที่ดีที่สุดใน local จะนำไปสู่วิธีการแก้ปัญหาที่ดีที่สุดใน global</li>
+<li>วิธีคิดแบบ greedy จะไม่นำไปสู่วิธีการแก้ปัญหาที่ดีที่สุดเสมอไป มีเพียงบางปัญหาเท่านั้นที่สามารถนำไปใช้ได้</li>
+<li>การพิสูจน์ว่าสามารถใช้วิธีคิดแบบ greedy นั้นทำยาก บางครั้งการลองเขียนโค้ดไปเลยจะสะดวกกว่าการพิสูจน์</li></ul>
+<h2>ปัญหาการทอนเหรียญ</h2>
+<p>พิจารณาปัญหาที่ต้องการทอนเงินมูลค่า n โดยใช้เหรียญที่มีมูลค่า <span class="math math-inline"><!-- HTML_TAG_START --><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">{</mo><msub><mi>c</mi><mn>1</mn></msub><mo separator="true">,</mo><msub><mi>c</mi><mn>2</mn></msub><mo separator="true">,</mo><mo>⋯</mo><mtext> </mtext><mo separator="true">,</mo><msub><mi>c</mi><mi>k</mi></msub><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">\{c_1, c_2, \cdots, c_k\}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">{</span><span class="mord"><span class="mord mathnormal">c</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal">c</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="minner">⋯</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal">c</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.03148em;">k</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">}</span></span></span></span><!-- HTML_TAG_END --></span> จำนวนเหรียญที่น้อยที่สุดที่ต้องใช้เป็นเท่าไร?</p>
+<h3>ตัวอย่าง</h3>
+<p>มูลค่าของเหรียญคือ</p>
+<p><span class="math math-inline"><!-- HTML_TAG_START --><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">{</mo><mn>1</mn><mo separator="true">,</mo><mn>2</mn><mo separator="true">,</mo><mn>5</mn><mo separator="true">,</mo><mn>10</mn><mo separator="true">,</mo><mn>20</mn><mo separator="true">,</mo><mn>50</mn><mo separator="true">,</mo><mn>100</mn><mo separator="true">,</mo><mn>200</mn><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">\{1,2,5,10,20,50,100,200\}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">{</span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">2</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">5</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">10</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">20</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">50</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">100</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">200</span><span class="mclose">}</span></span></span></span><!-- HTML_TAG_END --></span></p>
+<p>และ <em>n</em> = 520</p>
+<h3>Greedy approach</h3>
+<p>ตัวอย่างวิธีคิดแบบ greedy คือเลือกเหรียญที่มีมูลค่ามากสุดก่อนเสมอ จนกว่าเราจะสามารถรวมมูลค่าได้ถูกต้อง</p>
+<p><strong>คำเตือน</strong> วิธีคิดแบบ greedy ไม่จำเป็นจะเป็นวิธีที่ดีที่สุดเสมอไป กรณีนี้ขึ้นอยู่กับประเภทของเหรียญว่าสามารถใช้วิธี greedy ได้หรือไม่</p>
+<h2>ปัญหาการจัดตารางเวลา</h2>
+<p>พิจารณาปัญหาที่ต้องการเรียง <em>n</em> งานซึ่งมีเวลาเริ่มและเวลาจบแตกต่างกันไป โดยต้องการให้สามารถจัดเรียงงานให้ได้จำนวนมากที่สุด</p>
+<h3>ตัวอย่าง</h3>
+<table><thead><tr><th>งาน</th>
+<th>เวลาเริ่ม</th>
+<th>เวลาจบ</th></tr></thead>
+<tbody><tr><td>A</td>
+<td>1</td>
+<td>3</td></tr>
+<tr><td>B</td>
+<td>2</td>
+<td>5</td></tr>
+<tr><td>C</td>
+<td>3</td>
+<td>9</td></tr>
+<tr><td>D</td>
+<td>6</td>
+<td>8</td></tr></tbody></table>
+<h3>คำอธิบาย</h3>
+<p>แนวคิดที่เลือกงานถัดไปที่เลิกเร็วที่สุดเสมอ สามารถอ้างได้ว่าหากเราเลือกงานที่เลิกช้ากว่างานที่เราเลือก เราจะได้จำนวนงานอย่างมากที่สุดเท่ากับจำนวนงานที่เราเลือกด้วยวิธีเดิม เพราะฉะนั้นการเลือกงานที่เลิกช้ากว่าจะไม่สามารถให้คำตอบที่ดีกว่าได้</p>
+<h2>เพิ่มเติม</h2>
+<ul><li>การบรรยายวิชา การออกแบบและวิเคราะห์อัลกอริทึม
+โดย สมชาย ประสิทธิ์จูตระกูล<ul><li><a href="https://youtu.be/TDZ37p9CH5Y" rel="nofollow">อัลกอริทึม : 5.1 อัลกอริทึมแบบละโมบ - แนวคิด</a></li>
+<li><a href="https://youtu.be/t_OX-QqZxzE" rel="nofollow">อัลกอริทึม : 5.2 อัลกอริทึมแบบละโมบ - การจัดกิจกรรม</a></li>
+<li><a href="https://youtu.be/jSAmgSPFsXY" rel="nofollow">อัลกอริทึม : 5.3 อัลกอริทึมแบบละโมบ - Knapsack</a></li>
+<li><a href="https://youtu.be/OD2ZnPSXFLA" rel="nofollow">อัลกอริทึม : 5.4 อัลกอริทึมแบบละโมบ - รหัสฮัฟฟ์แมน</a></li></ul></li></ul></article>
+
+		<script type="module" data-sveltekit-hydrate="1kqb21s">
+			import { start } from "../../../../_app/immutable/start-a0a27161.js";
+
+			start({
+				env: {},
+				paths: {"base":"","assets":""},
+				target: document.querySelector('[data-sveltekit-hydrate="1kqb21s"]').parentNode,
+				version: "1730165720844",
+				hydrate: {
+					node_ids: [0, 2, 38],
+					data: [null,null,null],
+					form: null
+				}
+			});
+		</script>
+	</div>
+  </body>
+</html>

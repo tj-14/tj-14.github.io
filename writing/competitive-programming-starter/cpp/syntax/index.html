@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Tree Saengja</title>
+    <meta
+      name="description"
+      content="Research Assistant at Vision and Learning Lab"
+    />
+    <meta name="author" content="Tossaporn Saengja" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="thumbnail"
+      content="https://tj-14.github.io/assets/yellow.webp"
+    />
+    <link rel="icon" href="https://tj-14.github.io/assets/yellow.webp" />
+    <meta property="og:title" content="Tree Saengja" />
+    <meta
+      property="og:description"
+      content="Research Assistant at Vision and Learning Lab"
+    />
+    <meta
+      property="og:image"
+      content="https://tj-14.github.io/assets/tossaporn.webp"
+    />
+    <meta property="og:url" content="https://tj-14.github.io" />
+    <meta http-equiv="content-security-policy" content="">
+		<link href="../../../../_app/immutable/assets/_layout-269e78f2.css" rel="stylesheet">
+		<link rel="modulepreload" href="../../../../_app/immutable/start-a0a27161.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/index-6d7442bc.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/singletons-3d8b0d2a.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/components/pages/_layout.svelte-05b8315f.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/stores-47666cc8.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/modules/pages/_layout.js-01894052.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/_layout-ca604eb6.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/components/pages/writing/competitive-programming-starter/_layout.svelte-505be075.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/components/pages/writing/competitive-programming-starter/cpp/syntax/_page.svelte-75564e58.js"><title>CPP Syntax for Competitive Programming</title><!-- HEAD_svelte-1ec1al1_START --><!-- HEAD_svelte-1ec1al1_END -->
+  </head>
+  <body data-sveltekit-preload-data="hover">
+    <div style="display: contents">
+<article><header><b>Tossaporn Saengja</b>
+    <nav><span><a href="/">home</a> &gt; </span><span><a href="/writing">writing</a> &gt; </span><span><a href="/writing/competitive-programming-starter">competitive-programming-starter</a> &gt; </span><span>syntax</span></nav></header>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css" integrity="sha384-Xi8rHCmBmhbuyyhbI88391ZKP2dmfnOl4rT9ZfRI7mLTdk1wblIUnrIq35nqwEvC" crossorigin="anonymous">
+<link href="/assets/themes/prism-gruvbox-light.css" rel="stylesheet">
+
+
+
+<h1>CPP Syntax for Competitive Programming</h1>
+<p>อ้างอิงจาก <a href="https://cplusplus.com/files/tutorial.pdf" rel="nofollow">C++ Language Tutorial</a> และประสบการณ์ส่วนตัว</p>
+<h2>Bare Minimum</h2>
+<h3>Code Template</h3>
+<pre class="language-cpp"><!-- HTML_TAG_START --><code class="language-cpp"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;bits/stdc++.h></span></span>
+
+<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span></code><!-- HTML_TAG_END --></pre>
+<ul><li><code>bits/stdc++.h</code> เป็น library ที่นิยมใช้กันในการเขียนโปรแกรมเชิงแข่งขันเพื่อความสะดวก</li>
+<li><code>using namespace std</code> ใช้เพื่อความสะดวกเวลาใช้คำสั่งต่าง ๆ เช่น<ul><li>เดิมจะต้องเขียน <code>std::cout &lt;&lt; &quot;Hello World!&quot;;</code> ในการแสดงผลคำว่า <code>Hello World!</code></li>
+<li>ถ้ามีบรรทัด <code>using namespace std</code> แล้วจะไม่ต้องพิมพ์ <code>std::</code> นำหน้า</li>
+<li>ก็คือจะสั้นลงเหลือ <code>cout &lt;&lt; &quot;Hello World!;</code></li></ul></li></ul>
+<h3>Comments</h3>
+<pre class="language-cpp"><!-- HTML_TAG_START --><code class="language-cpp"><span class="token comment">// line comment </span>
+
+<span class="token comment">/*
+block 
+comment
+*/</span></code><!-- HTML_TAG_END --></pre>
+<h3>Variables Data Types</h3>
+<p>ในภาษา C++ จำเป็นจะต้องประกาศ “ชนิด” ของตัวแปรเสมอ (ต่างจาก Python)</p>
+<p>ชนิดที่พบบ่อยคือ</p>
+<table><thead><tr><th>ชนิด</th>
+<th>Size (byte)*</th>
+<th></th></tr></thead>
+<tbody><tr><td><code>bool</code></td>
+<td>1</td>
+<td>ค่าความจริง true, false (0-1)</td></tr>
+<tr><td><code>char</code></td>
+<td>2</td>
+<td>ตัวอักษร</td></tr>
+<tr><td><code>int</code></td>
+<td>4</td>
+<td>จำนวนเต็ม</td></tr>
+<tr><td><code>long long</code></td>
+<td>8</td>
+<td>จำนวนเต็มเหมือนกัน แต่เก็บค่าได้มากกว่า</td></tr>
+<tr><td><code>float</code></td>
+<td>4</td>
+<td>จำนวนจริง</td></tr>
+<tr><td><code>double</code></td>
+<td>8</td>
+<td>จำนวนจริงเหมือนกัน แต่เก็บค่าได้มากกว่า</td></tr></tbody></table>
+<p>สาเหตุที่มีชนิดเดียวกันที่เก็บค่าได้แตกต่างกันเพราะการจองพื้นที่ memory ขนาดไม่เท่ากัน</p>
+<h3>Input/Output</h3>
+<p>ใช้ <code>cin</code> ในการรับค่า โดยที่ <code>cin</code> จะดูชนิดของตัวแปรให้ตอนที่รับค่า</p>
+<pre class="language-cpp"><!-- HTML_TAG_START --><code class="language-cpp"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;bits/stdc++.h></span></span>
+
+<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  <span class="token keyword">int</span> a<span class="token punctuation">;</span>
+  cin <span class="token operator">>></span> a<span class="token punctuation">;</span>
+  <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span></code><!-- HTML_TAG_END --></pre>
+<p>หากพิมพ์ <code>5</code> หลังจากรันโปรแกรมแล้ว <code>a</code> จะมีค่าเท่ากับ 5 ที่เป็น <code>integer</code></p>
+<p>ถ้า</p>
+<pre class="language-cpp"><!-- HTML_TAG_START --><code class="language-cpp"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;bits/stdc++.h></span></span>
+
+<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  <span class="token keyword">char</span> a<span class="token punctuation">;</span>
+  cin <span class="token operator">>></span> a<span class="token punctuation">;</span>
+  <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span></code><!-- HTML_TAG_END --></pre>
+<p>แล้วพิมพ์ <code>5</code> หลังจากรันโปรแกรมแล้ว <code>a</code> จะมีค่าเท่ากับ ‘5’ ที่เป็น <code>character</code></p>
+<p>ตัวอย่างเช่น</p>
+<pre class="language-cpp"><!-- HTML_TAG_START --><code class="language-cpp"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;bits/stdc++.h></span></span>
+
+<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  <span class="token keyword">char</span> a<span class="token punctuation">;</span>
+  <span class="token keyword">int</span> b<span class="token punctuation">;</span>
+  cin <span class="token operator">>></span> a <span class="token operator">>></span> b<span class="token punctuation">;</span>
+  <span class="token keyword">int</span> c <span class="token operator">=</span> a<span class="token punctuation">;</span>
+  cout <span class="token operator">&lt;&lt;</span> c <span class="token operator">&lt;&lt;</span> <span class="token string">" "</span> <span class="token operator">&lt;&lt;</span> b<span class="token punctuation">;</span>
+  <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span></code><!-- HTML_TAG_END --></pre>
+<p>แล้วพิมพ์ <code>5 5</code> จะได้ผลลัพธ์เป็น <code>53 5</code> เนื่องจาก character ‘5’ มีค่า ascii เป็น <code>53</code> (ถูกแปลงค่า)</p>
+<blockquote><p><code>&#39;\n&#39;</code> เป็น special character ที่ใช้สำหรับขึ้นบรรทัดใหม่ในการแสดงผล</p></blockquote>
+<p>เช่น</p>
+<pre class="language-cpp"><!-- HTML_TAG_START --><code class="language-cpp"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;bits/stdc++.h></span></span>
+
+<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  <span class="token keyword">char</span> a<span class="token punctuation">;</span>
+  <span class="token keyword">int</span> b<span class="token punctuation">;</span>
+  cin <span class="token operator">>></span> a <span class="token operator">>></span> b<span class="token punctuation">;</span>
+  <span class="token keyword">int</span> c <span class="token operator">=</span> a<span class="token punctuation">;</span>
+  cout <span class="token operator">&lt;&lt;</span> c <span class="token operator">&lt;&lt;</span> <span class="token string">"&#92;n"</span> <span class="token operator">&lt;&lt;</span> b<span class="token punctuation">;</span>
+  <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span></code><!-- HTML_TAG_END --></pre>
+<p>แล้วพิมพ์ <code>5 5</code> จะได้ผลลัพธ์เป็น </p>
+<pre class="language-undefined"><!-- HTML_TAG_START --><code class="language-undefined">53 
+5</code><!-- HTML_TAG_END --></pre>
+<blockquote><p>สังเกตว่า <code>cout</code> ต้องใช้เป็นท่อน ๆ คือส่ง <code>&lt;&lt;</code> ได้ทีละตัวแปรหรือทีละ string เท่านั้น</p></blockquote>
+<blockquote><p>เช่นเดียวกัน <code>cin</code> ที่ใช้เป็นท่อน ๆ คือรับ <code>&gt;&gt;</code> เข้าทีละตัวแปร โดยตัด input ตามประเภทตัวแปร</p></blockquote>
+<h3>Control Structures</h3>
+<h4>condition</h4>
+<ul><li>if-else if-else</li></ul>
+<pre class="language-cpp"><!-- HTML_TAG_START --><code class="language-cpp"><span class="token keyword">if</span> <span class="token punctuation">(</span>x <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">)</span>
+  cout <span class="token operator">&lt;&lt;</span> <span class="token string">"x is positive"</span><span class="token punctuation">;</span>
+<span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>x <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">)</span>
+  cout <span class="token operator">&lt;&lt;</span> <span class="token string">"x is negative"</span><span class="token punctuation">;</span>
+<span class="token keyword">else</span>
+  cout <span class="token operator">&lt;&lt;</span> <span class="token string">"x is 0"</span><span class="token punctuation">;</span></code><!-- HTML_TAG_END --></pre>
+<h4>loop</h4>
+<ul><li>while</li></ul>
+<pre class="language-cpp"><!-- HTML_TAG_START --><code class="language-cpp"><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token keyword">while</span> <span class="token punctuation">(</span>i <span class="token operator">&lt;</span> <span class="token number">10</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  cout <span class="token operator">&lt;&lt;</span> i <span class="token operator">&lt;&lt;</span> <span class="token string">" "</span><span class="token punctuation">;</span>
+  i<span class="token operator">++</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span> </code><!-- HTML_TAG_END --></pre>
+<ul><li>for</li></ul>
+<pre class="language-cpp"><!-- HTML_TAG_START --><code class="language-cpp"><span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">10</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  cout <span class="token operator">&lt;&lt;</span> i <span class="token operator">&lt;&lt;</span> <span class="token string">" "</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span> </code><!-- HTML_TAG_END --></pre>
+<h3>Arrays</h3>
+<p>ใน C++ นั้นตัวแปรทุกชนิดสามารถทำเป็นตัวแปรชุด (Array) ได้ด้วยการใส่วงเล็บ <code>[]</code> ด้านหลังชื่อตัวแปร เช่น</p>
+<p>จาก <code>int a</code> เป็นการประกาศตัวแปรที่เป็นจำนวนเต็มหนึ่งจำนวน</p>
+<p>สามารถเป็น <code>int a[10]</code> เป็นการประกาศตัวแปรที่เป็นจำนวนเต็ม <code>10</code> จำนวน โดยจะเรียกสมาชิกได้ เช่น</p>
+<p><code>a[0]</code> เป็นการเรียกสมาชิกตัวแรกใน array นั้น</p>
+<pre class="language-cpp"><!-- HTML_TAG_START --><code class="language-cpp"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;bits/stdc++.h></span></span>
+
+<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  <span class="token keyword">int</span> n<span class="token punctuation">;</span>
+  <span class="token keyword">int</span> a<span class="token punctuation">[</span><span class="token number">20</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+  cin <span class="token operator">>></span> n<span class="token punctuation">;</span>
+  <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> n<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    cin <span class="token operator">>></span> a<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+  <span class="token punctuation">&#125;</span>
+  <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span></code><!-- HTML_TAG_END --></pre>
+<p>ตัวอย่างด้านบนจะเป็นการรับค่า <code>n</code> เพื่อที่จะรับจำนวนเต็มต่ออีก <span class="math math-inline"><!-- HTML_TAG_START --><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span></span></span></span><!-- HTML_TAG_END --></span> จำนวน (ใช้ต่อในเงื่อนไขของ for loop)</p>
+<p>จากนั้นรับค่าเข้าสู่ <code>a[i]</code> ไปเรื่อย ๆ โดย <span class="math math-inline"><!-- HTML_TAG_START --><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi><mo>=</mo><mo stretchy="false">{</mo><mn>0</mn><mo separator="true">,</mo><mn>1</mn><mo separator="true">,</mo><mo>⋯</mo><mtext> </mtext><mo separator="true">,</mo><mi>n</mi><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">i=\{0,1,\cdots,n\}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6595em;"></span><span class="mord mathnormal">i</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">{</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="minner">⋯</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">n</span><span class="mclose">}</span></span></span></span><!-- HTML_TAG_END --></span></p>
+<pre class="language-cpp"><!-- HTML_TAG_START --><code class="language-cpp"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;bits/stdc++.h></span></span>
+
+<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  <span class="token keyword">int</span> n<span class="token punctuation">;</span>
+  <span class="token keyword">int</span> a<span class="token punctuation">[</span><span class="token number">20</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+  cin <span class="token operator">>></span> n<span class="token punctuation">;</span>
+  <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> n<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    cin <span class="token operator">>></span> a<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+  <span class="token punctuation">&#125;</span>
+  <span class="token keyword">int</span> sm <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+  <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> n<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    sm <span class="token operator">+=</span> a<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+  <span class="token punctuation">&#125;</span>
+  cout <span class="token operator">&lt;&lt;</span> sm<span class="token punctuation">;</span>
+  <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span></code><!-- HTML_TAG_END --></pre>
+<p>ตัวอย่างด้านบนเป็นการนำค่าที่รับเข้ามาไปใช้หาผลรวมต่อในตัวแปร <code>sm</code></p>
+<h3>Strings</h3>
+<p>ใน C++ มี <code>string</code> ให้ใช้ใน STL ซึ่งถูกรวมอยู่ใน <code>bits/stdc++.h</code> แล้ว</p>
+<p>จากที่ภาษา C ธรรมดาจะต้องใช้เป็น array of characters จึงสะดวกขึ้นเยอะ</p>
+<pre class="language-cpp"><!-- HTML_TAG_START --><code class="language-cpp"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;bits/stdc++.h></span></span>
+
+<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  string a<span class="token punctuation">;</span>
+  cin <span class="token operator">>></span> a<span class="token punctuation">;</span>
+  cout <span class="token operator">&lt;&lt;</span> a<span class="token punctuation">;</span>
+  <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span></code><!-- HTML_TAG_END --></pre>
+<p>ตัวอย่างด้านบนเป็นการรับค่า string แล้วส่งออกเลย</p>
+<h3>Functions</h3>
+<pre class="language-cpp"><!-- HTML_TAG_START --><code class="language-cpp"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;bits/stdc++.h></span></span>
+
+<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
+
+<span class="token keyword">int</span> <span class="token function">addint</span><span class="token punctuation">(</span><span class="token keyword">int</span> a<span class="token punctuation">,</span> <span class="token keyword">int</span> b<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  <span class="token keyword">return</span> a <span class="token operator">+</span> b<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  cout <span class="token operator">&lt;&lt;</span> <span class="token function">addint</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span></code><!-- HTML_TAG_END --></pre>
+<p>ตัวอย่างด้านบนเป็นการสร้างฟังก์ชัน <span class="math math-inline"><!-- HTML_TAG_START --><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo stretchy="false">(</mo><mi>a</mi><mo separator="true">,</mo><mi>b</mi><mo stretchy="false">)</mo><mo>=</mo><mi>a</mi><mo>+</mo><mi>b</mi></mrow><annotation encoding="application/x-tex">f(a, b) = a+b</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathnormal">a</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">b</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord mathnormal">a</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal">b</span></span></span></span><!-- HTML_TAG_END --></span> โดยให้ชื่อว่า <code>addint</code> พร้อมตัวอย่างการเรียกใช้</p>
+<h3>Array หลายมิติ</h3>
+<pre class="language-cpp"><!-- HTML_TAG_START --><code class="language-cpp"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;bits/stdc++.h></span></span>
+
+<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  <span class="token keyword">int</span> a<span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+  <span class="token keyword">int</span> n<span class="token punctuation">,</span> m<span class="token punctuation">;</span>
+  cin <span class="token operator">>></span> n <span class="token operator">>></span> m<span class="token punctuation">;</span>
+  <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> n<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> j <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> j <span class="token operator">&lt;</span> m<span class="token punctuation">;</span> j<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+      cin <span class="token operator">>></span> a<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+  <span class="token punctuation">&#125;</span>
+  <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span></code><!-- HTML_TAG_END --></pre>
+<img src="/assets/competitive-programming-starter/2d-array.png" width="500px"></article>
+
+		<script type="module" data-sveltekit-hydrate="1sqbzwb">
+			import { start } from "../../../../_app/immutable/start-a0a27161.js";
+
+			start({
+				env: {},
+				paths: {"base":"","assets":""},
+				target: document.querySelector('[data-sveltekit-hydrate="1sqbzwb"]').parentNode,
+				version: "1730165720844",
+				hydrate: {
+					node_ids: [0, 2, 12],
+					data: [null,null,null],
+					form: null
+				}
+			});
+		</script>
+	</div>
+  </body>
+</html>
