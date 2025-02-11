@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>An Opinionated Reference on Doing Research</title>
+  <title>Opinionated Reference on Doing Research</title>
   <style>
     html {
       color: #1a1a1a;
@@ -169,11 +169,10 @@
 </head>
 <body>
 <header id="title-block-header">
-<h1 class="title">An Opinionated Reference on Doing Research</h1>
+<h1 class="title">Opinionated Reference on Doing Research</h1>
 </header>
 <h1 id="personal-experience">Personal Experience</h1>
 <ul>
-<li>I hope this writing helps me to avoid future mistakes.</li>
 <li>Learn to use all leverages:
 <ul>
 <li>LLM is very useful:
@@ -206,16 +205,13 @@ nutrition dataset? Can you give pseudocode for each?”</li>
 </ul></li>
 <li>Always be aware of the process and optimize the bottleneck.
 <ul>
-<li>Need to rearrange images for research update for the third time? Ask
-ChatGPT for a Python script to automate it.</li>
-<li>Difficult to run experiments on different machines? Set up a
+<li>Need to rearrange images for research update for the third time
+-&gt; Ask ChatGPT for a Python script to automate it.</li>
+<li>Difficult to run experiments on different machines -&gt; Set up a
 container.</li>
 </ul></li>
 <li>Have multi-level perspectives, debug (smallest) to experiment design
-(highest?).
-<ul>
-<li>Know when to zoom in and out.</li>
-</ul></li>
+(higher); know when to zoom in and out.</li>
 <li>Fast feedback loop is very important.
 <ul>
 <li>Set up environments, tools as much as possible to eliminate brain
@@ -233,17 +229,9 @@ blocks.</li>
 <ul>
 <li>Visualization
 <ul>
-<li>spatial
-<ul>
-<li>bad: two things that are far apart</li>
-<li>good: reorganize to be close (it’s also easier to compare
-horizontally than vertically)</li>
-</ul></li>
-<li>scale
-<ul>
-<li>bad: two things that are different scales</li>
-<li>good: normalize/standardize</li>
-</ul></li>
+<li>spatial; reorganize to be close (horizontal &gt; vertical) &gt; far
+apart</li>
+<li>scale; normalize/standardize &gt; different scales</li>
 </ul></li>
 <li>Note-taking
 <ul>
@@ -269,17 +257,12 @@ advices I have read so far on doing ML research.</li>
 <li>a deep insight about some recurring questions</li>
 </ul></li>
 <li>research taste is important to be developed</li>
-<li>goal-driven to develop unique perspective
-<ul>
-<li>ask questions that nobody else is asking</li>
-</ul></li>
+<li>goal-driven to develop unique perspective; ask questions that nobody
+else is asking</li>
 <li>constrain search to solutions that seem general and can be applied
-to other problems
-<ul>
-<li>For example, avoid incorporating domain information into the
+to other problems, e.g., avoid incorporating domain information into the
 solution–achieve locomotion in simulation, in a general way that could
 be applied to other problems.</li>
-</ul></li>
 <li>use notebook
 <ul>
 <li>review every 1 or 2 weeks</li>
@@ -379,19 +362,18 @@ tested models.</li>
 <hr />
 <h1 id="simon-peyton-jones">Simon Peyton Jones</h1>
 <ul>
-<li>This is a classic advice on how to write a paper. <a href="#fn4"
+<li>A classic on how to write a paper. <a href="#fn4"
 class="footnote-ref" id="fnref4"
 role="doc-noteref"><sup>4</sup></a></li>
-<li>Graham said this is a timeless piece that was useful for him.</li>
+<li>Graham: this is a useful, timeless piece.</li>
 <li>Seven simple, actionable suggestions</li>
 </ul>
 <h2 id="dont-wait-write">Don’t wait: write</h2>
 <ul>
-<li>This is like a lazy evaluation.</li>
-<li>Forces us to be clear and focused and crystallises what we don’t
-understand.</li>
-<li>It also makes it easy to share.</li>
-<li>This makes writing part of the research process.</li>
+<li>Act as a lazy evaluation.</li>
+<li>Forces to be clear, focused, and crystallises unknown.</li>
+<li>Makes it easy to share.</li>
+<li>Makes writing part of the research process.</li>
 </ul>
 <h2 id="identify-key-idea">Identify key idea</h2>
 <ul>
@@ -403,10 +385,7 @@ understand.</li>
 <li>“In this section we present the main contributions of the
 paper.”</li>
 </ul></li>
-<li>review
-<ul>
-<li>“I believe the main idea is …”</li>
-</ul></li>
+<li>review: “I believe the main idea is …”</li>
 <li>fool-proof the writing</li>
 </ul>
 <h2 id="tell-a-story">Tell a story</h2>
@@ -432,10 +411,8 @@ debug this.”</li>
 </ul></li>
 <li>should be refutable.</li>
 <li>bulleted list</li>
-<li>no “rest of this paper is … Section 3 provides …”
-<ul>
-<li>“We give the syntax and semantics … (Section 3)”</li>
-</ul></li>
+<li>“We give the syntax and semantics … (Section 3)” &gt; “rest of this
+paper is … Section 3 provides …”</li>
 <li>page one is very important.
 <ul>
 <li>is every section referred to from the first page?</li>
@@ -453,10 +430,8 @@ approach.</li>
 </ul>
 <h2 id="put-your-readers-first">Put your readers first</h2>
 <ul>
-<li>don’t send them to sleep or stupidity.
-<ul>
-<li>if the idea is clever, readers will find it.</li>
-</ul></li>
+<li>don’t send them to sleep or stupidity; if the idea is clever,
+readers will find it.</li>
 <li>explain with examples, and generalize</li>
 <li>get help, each reader can read for the first time once.</li>
 </ul>
@@ -468,9 +443,8 @@ mis-spelt”)</li>
 <li>treat every review like gold dust.</li>
 <li>read every criticism as a positive suggestion for something we could
 explain more clearly.</li>
-<li>bad: “you stupid person, I meant X”.</li>
-<li>good: fix the paper so that X is apparent even to the stupidest
-reader.</li>
+<li>fix the paper so that X is apparent even to the stupidest reader.
+&gt; “you stupid person, I meant X”</li>
 <li>thank the reviewers for their time.</li>
 </ul>
 <hr />
@@ -506,11 +480,10 @@ outdated but contains timeless advices.
 <li>Alan Lakien’s “How to Get Control of Your Time and Your Life” is a
 good book.</li>
 </ul></li>
-<li>“Do brains backpropagate” - Geoffrey Hinton <a href="#fn8"
-class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a> is
-a good talk - Understanding brain makes better AI models.</li>
 <li>Writing Advice for Fledging Machine Learning Researchers<a
-href="#fn9" class="footnote-ref" id="fnref9"
+href="#fn8" class="footnote-ref" id="fnref8"
+role="doc-noteref"><sup>8</sup></a> and The Last Mile of Creating
+Publication-Ready Plots <a href="#fn9" class="footnote-ref" id="fnref9"
 role="doc-noteref"><sup>9</sup></a> - small details, solid advice on
 writing.</li>
 </ol>
@@ -557,12 +530,12 @@ href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 href="https://people.cs.umass.edu/~emery/misc/how-to.pdf"
 class="uri">https://people.cs.umass.edu/~emery/misc/how-to.pdf</a><a
 href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn8"><p><a href="https://www.youtube.com/watch?v=VIRCybGgHts"
-class="uri">https://www.youtube.com/watch?v=VIRCybGgHts</a><a
-href="#fnref8" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn9"><p><a
+<li id="fn8"><p><a
 href="https://agustinus.kristia.de/blog/writing-advice/"
 class="uri">https://agustinus.kristia.de/blog/writing-advice/</a><a
+href="#fnref8" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn9"><p><a href="https://agustinus.kristia.de/blog/plotting/"
+class="uri">https://agustinus.kristia.de/blog/plotting/</a><a
 href="#fnref9" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn10"><p><a
 href="http://joschu.net/blog/opinionated-guide-ml-research.html"
