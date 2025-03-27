@@ -1,81 +1,127 @@
-<!DOCTYPE html>
+<!doctype html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
-<head>
-  <meta charset="utf-8" />
-  <meta name="generator" content="pandoc" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>o1-ioi and o3 in competitive programming</title>
-  <style>
-    code{white-space: pre-wrap;}
-    span.smallcaps{font-variant: small-caps;}
-    div.columns{display: flex; gap: min(4vw, 1.5em);}
-    div.column{flex: auto; overflow-x: auto;}
-    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-    /* The extra [class] is a hack that increases specificity enough to
+  <head>
+    <meta charset="utf-8" />
+    <meta name="generator" content="pandoc" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=yes"
+    />
+    <title>o1-ioi and o3 in competitive programming</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=K2D:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap");
+    </style>
+    <style>
+      code {
+        white-space: pre-wrap;
+      }
+      span.smallcaps {
+        font-variant: small-caps;
+      }
+      div.columns {
+        display: flex;
+        gap: min(4vw, 1.5em);
+      }
+      div.column {
+        flex: auto;
+        overflow-x: auto;
+      }
+      div.hanging-indent {
+        margin-left: 1.5em;
+        text-indent: -1.5em;
+      }
+      /* The extra [class] is a hack that increases specificity enough to
        override a similar rule in reveal.js */
-    ul.task-list[class]{list-style: none;}
-    ul.task-list li input[type="checkbox"] {
-      font-size: inherit;
-      width: 0.8em;
-      margin: 0 0.8em 0.2em -1.6em;
-      vertical-align: middle;
-    }
-  </style>
-  <link rel="stylesheet" href="https://tj-14.github.io/styles.css" />
-</head>
-<body>
-<p><b>Tossaporn Saengja</b> <a href="javascript:history.back()">back</a></p>
-<header id="title-block-header">
-<h1 class="title">o1-ioi and o3 in competitive programming</h1>
-</header>
-<p>OpenAI released a preprint on o1-ioi/o3 in “Competitive Programming
-with Large Reasoning Models”<a href="#fn1" class="footnote-ref"
-id="fnref1" role="doc-noteref"><sup>1</sup></a>. I found three
-interesting notes.</p>
-<p>I got bronze (71st percentile) in IOI 2013 and coached students to
-IOI. I’m not confident if I would get a medal in IOI 2024. For IOI 2024,
-report says <code>o1-ioi</code> could get a gold (362.14pts) with 10K
-submission, where <code>o3</code> improves (395.64pts) to within 50
-submissions.</p>
-<p><code>o1-ioi</code> continues reinforcement learning (RL) training
-targeted at coding tasks. At test-time, it samples 10K solutions for
-each <em>subtask</em>, and use clustering and reranking for best sampled
-solutions to submit. It also creates “one version of the document for
-each subtask”. Top 50 sampled solutions would get a score of 213 (49th
-percentile, Honourable Mention).</p>
-<p><code>o3</code> is an exploration on the limits of RL. No details
-from the preprint, but the method is probably similar to DeepSeek-R1 (RL
-with verifiable rewards). <code>o3</code> also samples from a single
-prompt on the “original problem,” generating 1K solutions per
-<em>problem</em>. Highest test-time compute are selected as top 50
-solutions.</p>
-<p>First note is that attacking every <em>subtask</em> is a common
-technique in competitive programming. <code>o1-ioi</code> seems to adopt
-the approach, where <code>o3</code> is attacking the
-<code>problem</code> holistically.</p>
-<p>Second note is I think <code>o3</code> would not happen if
-<code>o1-ioi</code> doesn’t show promising results on a relaxed
-constraint (10k submission). <code>o1-ioi</code> shows that the model
-“knows” a solution “very deep” inside the weights (since it takes 10k
-search). <code>o3</code> shows that RL can tweak the weights to surface
-the solution, thus enhancing its ability.</p>
-<p>Third note is RL can push capabilities, but supervised fine-tuning
-could probably get to the same point much easier. Not sure if
-<code>o3-mini-high</code> (supposed a distillation from <code>o3</code>)
-would get a gold. Having a good mentor is a huge leverage (either human,
-or GPT)</p>
-<p><em>Bonus note from ChatGPT-4o itself</em>: “This mirrors how humans
-improve: extensive problem-solving exposure helps identify”deeply
-embedded” knowledge, but structured learning (mentorship, targeted
-training) improves efficiency.”</p>
-<section id="footnotes" class="footnotes footnotes-end-of-document"
-role="doc-endnotes">
-<hr />
-<ol>
-<li id="fn1"><p><a href="https://arxiv.org/abs/2502.06807"
-class="uri">https://arxiv.org/abs/2502.06807</a><a href="#fnref1"
-class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-</ol>
-</section>
-</body>
+      ul.task-list[class] {
+        list-style: none;
+      }
+      ul.task-list li input[type="checkbox"] {
+        font-size: inherit;
+        width: 0.8em;
+        margin: 0 0.8em 0.2em -1.6em;
+        vertical-align: middle;
+      }
+    </style>
+    <link rel="stylesheet" href="https://tj-14.github.io/styles.css" />
+  </head>
+  <body>
+    <p><b>Tossaporn Saengja</b> <a href="javascript:history.back()">back</a></p>
+    <header id="title-block-header">
+      <h1 class="title">o1-ioi and o3 in competitive programming</h1>
+    </header>
+    <p>
+      OpenAI released a preprint on o1-ioi/o3 in “Competitive Programming with
+      Large Reasoning Models”<a
+        href="#fn1"
+        class="footnote-ref"
+        id="fnref1"
+        role="doc-noteref"
+        ><sup>1</sup></a
+      >. I found three interesting notes.
+    </p>
+    <p>
+      I got bronze (71st percentile) in IOI 2013 and coached students to IOI.
+      I’m not confident if I would get a medal in IOI 2024. For IOI 2024, report
+      says <code>o1-ioi</code> could get a gold (362.14pts) with 10K submission,
+      where <code>o3</code> improves (395.64pts) to within 50 submissions.
+    </p>
+    <p>
+      <code>o1-ioi</code> continues reinforcement learning (RL) training
+      targeted at coding tasks. At test-time, it samples 10K solutions for each
+      <em>subtask</em>, and use clustering and reranking for best sampled
+      solutions to submit. It also creates “one version of the document for each
+      subtask”. Top 50 sampled solutions would get a score of 213 (49th
+      percentile, Honourable Mention).
+    </p>
+    <p>
+      <code>o3</code> is an exploration on the limits of RL. No details from the
+      preprint, but the method is probably similar to DeepSeek-R1 (RL with
+      verifiable rewards). <code>o3</code> also samples from a single prompt on
+      the “original problem,” generating 1K solutions per <em>problem</em>.
+      Highest test-time compute are selected as top 50 solutions.
+    </p>
+    <p>
+      First note is that attacking every <em>subtask</em> is a common technique
+      in competitive programming. <code>o1-ioi</code> seems to adopt the
+      approach, where <code>o3</code> is attacking the
+      <code>problem</code> holistically.
+    </p>
+    <p>
+      Second note is I think <code>o3</code> would not happen if
+      <code>o1-ioi</code> doesn’t show promising results on a relaxed constraint
+      (10k submission). <code>o1-ioi</code> shows that the model “knows” a
+      solution “very deep” inside the weights (since it takes 10k search).
+      <code>o3</code> shows that RL can tweak the weights to surface the
+      solution, thus enhancing its ability.
+    </p>
+    <p>
+      Third note is RL can push capabilities, but supervised fine-tuning could
+      probably get to the same point much easier. Not sure if
+      <code>o3-mini-high</code> (supposed a distillation from <code>o3</code>)
+      would get a gold. Having a good mentor is a huge leverage (either human,
+      or GPT)
+    </p>
+    <p>
+      <em>Bonus note from ChatGPT-4o itself</em>: “This mirrors how humans
+      improve: extensive problem-solving exposure helps identify”deeply
+      embedded” knowledge, but structured learning (mentorship, targeted
+      training) improves efficiency.”
+    </p>
+    <section
+      id="footnotes"
+      class="footnotes footnotes-end-of-document"
+      role="doc-endnotes"
+    >
+      <hr />
+      <ol>
+        <li id="fn1">
+          <p>
+            <a href="https://arxiv.org/abs/2502.06807" class="uri"
+              >https://arxiv.org/abs/2502.06807</a
+            ><a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a>
+          </p>
+        </li>
+      </ol>
+    </section>
+  </body>
 </html>
