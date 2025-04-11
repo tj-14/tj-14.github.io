@@ -37,11 +37,6 @@ header {
   margin-bottom: 1rem;
 }
 
-h1 a:link {
-  text-decoration: none;
-  color: #000;
-}
-
 nav a {
   margin-left: 0.5rem;
   text-decoration: none;
@@ -59,6 +54,11 @@ nav a.active {
 
 .intro {
   min-height: 150px;
+}
+
+.home {
+  text-decoration: none;
+  color: #000;
 }
 
 .headshot {
