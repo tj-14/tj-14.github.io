@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rock Climbing Flexibility Program</title>
+  <style>
+    /* Basic styling and variables */
+    :root {
+      --bg: #fff;
+      --accent: #f4f4f4;
+      --border: #d0d0d0;
+      --text: #222;
+      --link: #06c;
+      --note-text: #666;
+      --how-text: #444;
+    }
+
+    /* Dark mode support (optional, based on user preference) */
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #222;
+        --accent: #333;
+        --border: #555;
+        --text: #eee;
+        --link: #69c;
+        --note-text: #aaa;
+        --how-text: #ccc;
+      }
+
+      img.thumb {
+        filter: brightness(0.8) contrast(1.2);
+        /* Adjust image brightness for dark mode */
+      }
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      max-width: 820px;
+      /* Optimal reading width */
+      margin: 0 auto;
+      padding: 1rem;
+      line-height: 1.6;
+    }
+
+    h1,
+    h2 {
+      text-align: center;
+      margin: 1em 0 0.5em 0;
+      color: var(--text);
+    }
+
+    p {
+      margin-bottom: 1em;
+    }
+
+    /* Table styling */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1em;
+      font-size: 0.95rem;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+      /* Subtle shadow */
+      border-radius: 8px;
+      /* Rounded corners for table */
+      overflow: hidden;
+      /* Ensures border-radius clips content */
+    }
+
+    th,
+    td {
+      border: 1px solid var(--border);
+      padding: 0.75em;
+      /* Increased padding */
+      text-align: left;
+    }
+
+    th {
+      background-color: var(--accent);
+      font-weight: 600;
+      /* Bolder headers */
+    }
+
+    tbody tr:nth-child(odd) {
+      background-color: var(--bg);
+      /* Keep odd rows standard */
+    }
+
+    tbody tr:nth-child(even) {
+      background-color: var(--accent);
+      /* Zebra striping for even rows */
+    }
+
+    /* Details/Summary accordion styling */
+    details {
+      background-color: var(--accent);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      /* Consistent rounded corners */
+      margin: 1rem 0;
+      /* More spacing */
+      padding: 0.8rem 1.2rem;
+      /* Adjusted padding */
+      transition: background-color 0.2s ease;
+      /* Smooth transition */
+    }
+
+    details:hover {
+      background-color: #e9e9e9;
+      /* Slight hover effect */
+    }
+
+    @media (prefers-color-scheme: dark) {
+      details:hover {
+        background-color: #444;
+      }
+    }
+
+
+    summary {
+      cursor: pointer;
+      font-weight: 600;
+      list-style: none;
+      /* Remove default marker */
+      padding: 0.2rem 0;
+    }
+
+    summary::-webkit-details-marker {
+      display: none;
+    }
+
+    /* Hide marker in Chrome/Safari */
+    summary::before {
+      /* Custom marker */
+      content: '▶ ';
+      font-size: 0.8em;
+      margin-right: 0.3em;
+      display: inline-block;
+      transition: transform 0.2s ease-in-out;
+    }
+
+    details[open] summary::before {
+      transform: rotate(90deg);
+    }
+
+    details[open] summary {
+      margin-bottom: 0.75rem;
+      /* Space below summary when open */
+    }
+
+    /* List styling within details */
+    ul {
+      margin: 0 0 0.5rem 0;
+      /* Remove left margin */
+      padding: 0;
+      list-style: none;
+      /* Remove default bullets */
+    }
+
+    li {
+      margin-bottom: 1rem;
+      /* More space between list items */
+      padding-bottom: 1rem;
+      /* Add padding below each item */
+      border-bottom: 1px dashed var(--border);
+      /* Separator line */
+      overflow: hidden;
+      /* Clear floats */
+    }
+
+    li:last-child {
+      border-bottom: none;
+      /* No border for the last item */
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    li strong {
+      display: block;
+      /* Make title block for better structure */
+      margin-bottom: 0.2em;
+    }
+
+    /* Thumbnail image styling */
+    img.thumb {
+      width: 80px;
+      /* Slightly larger thumbnail */
+      height: 60px;
+      /* Fixed aspect ratio */
+      object-fit: cover;
+      /* Ensure image covers the area */
+      border-radius: 6px;
+      float: right;
+      margin-left: 1rem;
+      /* More space from text */
+      margin-top: 0.2rem;
+      border: 1px solid var(--border);
+      /* Subtle border */
+    }
+
+    /* Helper text styling */
+    .note {
+      font-size: 0.85rem;
+      color: var(--note-text);
+      margin-top: 0.75rem;
+      /* More space above note */
+      font-style: italic;
+    }
+
+    .how {
+      display: block;
+      font-size: 0.9rem;
+      /* Slightly larger */
+      color: var(--how-text);
+      margin-top: 0.3rem;
+      /* More space above how-to */
+    }
+
+    /* Video link styling */
+    a.vid {
+      font-size: 0.85rem;
+      /* Slightly larger */
+      color: var(--link);
+      text-decoration: none;
+      margin-left: 0.5rem;
+      /* More space */
+      display: inline-block;
+      /* Better alignment */
+      transition: color 0.2s ease;
+    }
+
+    a.vid:hover {
+      text-decoration: underline;
+      color: #049;
+      /* Darker hover for light mode */
+    }
+
+    @media (prefers-color-scheme: dark) {
+      a.vid:hover {
+        color: #8af;
+        /* Lighter hover for dark mode */
+      }
+    }
+
+    /* Responsive table styling for small screens */
+    @media (max-width: 650px) {
+
+      table,
+      thead,
+      tbody,
+      th,
+      td,
+      tr {
+        display: block;
+      }
+
+      thead tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+        /* Hide table header */
+      }
+
+      tr {
+        margin-bottom: 1rem;
+        border: 1px solid var(--border);
+        padding: 1rem;
+        /* Add padding inside the 'card' */
+        border-radius: 8px;
+        background-color: var(--accent);
+        /* Give each row a background */
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+      }
+
+      tbody tr:nth-child(even) {
+        background-color: var(--accent);
+        /* Remove zebra striping on mobile */
+      }
+
+      td {
+        border: none;
+        border-bottom: 1px dotted var(--border);
+        /* Dotted line between fields */
+        position: relative;
+        padding-left: 50%;
+        /* Space for the label */
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+        min-height: 1.5em;
+        /* Ensure space even if content is short */
+        text-align: right;
+        /* Align content to the right */
+      }
+
+      td:last-child {
+        border-bottom: none;
+        /* No border for the last field */
+      }
+
+      td::before {
+        position: absolute;
+        top: 0.5rem;
+        /* Align with padding */
+        left: 0.75rem;
+        /* Add some left padding */
+        width: 45%;
+        padding-right: 0.75rem;
+        /* Space between label and value */
+        font-weight: bold;
+        white-space: nowrap;
+        text-align: left;
+        /* Align label text left */
+        content: attr(data-label);
+        /* Use data-label attribute */
+        color: var(--text);
+        /* Ensure label color matches */
+      }
+
+      /* Adjustments for list items on mobile */
+      img.thumb {
+        float: none;
+        /* Stack image */
+        display: block;
+        margin: 0 auto 0.5rem auto;
+        /* Center image */
+        width: 100px;
+        /* Larger image on mobile */
+        height: 75px;
+      }
+
+      li {
+        padding-bottom: 0.5rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>Rock Climbing Flexibility Program</h1>
+  <p style="text-align:center; font-size:0.9rem;">A weekly schedule to improve mobility and flexibility for climbing.
+    Tap the <em>▶ video</em> links or check thumbnails for a quick demo.</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Day</th>
+        <th>Focus Area</th>
+        <th>Duration</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td data-label="Day">Mon</td>
+        <td data-label="Focus">Full Body Mobility</td>
+        <td data-label="Duration">20–25 min</td>
+      </tr>
+      <tr>
+        <td data-label="Day">Tue</td>
+        <td data-label="Focus">Lower Body</td>
+        <td data-label="Duration">20 min</td>
+      </tr>
+      <tr>
+        <td data-label="Day">Wed</td>
+        <td data-label="Focus">Rest / Light Yoga</td>
+        <td data-label="Duration">Optional</td>
+      </tr>
+      <tr>
+        <td data-label="Day">Thu</td>
+        <td data-label="Focus">Hips & Core</td>
+        <td data-label="Duration">20 min</td>
+      </tr>
+      <tr>
+        <td data-label="Day">Fri</td>
+        <td data-label="Focus">Shoulders & Spine</td>
+        <td data-label="Duration">15–20 min</td>
+      </tr>
+      <tr>
+        <td data-label="Day">Sat</td>
+        <td data-label="Focus">Full Body & Splits</td>
+        <td data-label="Duration">25–30 min</td>
+      </tr>
+      <tr>
+        <td data-label="Day">Sun</td>
+        <td data-label="Focus">Rest / Gentle Stretch</td>
+        <td data-label="Duration">Optional</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Daily Details & Exercise Cues</h2>
+
+  <details data-day="Monday">
+    <summary>Monday · Full Body Mobility</summary>
+    <ul>
+      <li>
+        <img class="thumb" src="https://placehold.co/80x60/e2e8f0/333?text=Jumping+Jacks" alt="Jumping Jacks"
+          onerror="this.src='https://placehold.co/80x60/e2e8f0/333?text=Image+Error'; this.onerror=null;">
+        <strong>Jumping Jacks</strong> – 1 min <a class="vid" href="#" target="_blank" rel="noopener noreferrer">▶
+          video</a>
+        <span class="how">Jump feet wide while swinging arms overhead, then return. Keep it light.</span>
+      </li>
+      <li>
+        <img class="thumb" src="https://placehold.co/80x60/e2e8f0/333?text=Arm+Circles" alt="Arm Circles"
+          onerror="this.src='https://placehold.co/80x60/e2e8f0/333?text=Image+Error'; this.onerror=null;">
+        <strong>Arm Circles</strong> – 30 s each way <a class="vid" href="#" target="_blank" rel="noopener noreferrer">▶
+          video</a>
+        <span class="how">Draw slow, controlled circles forward and backward to warm up shoulder joints.</span>
+      </li>
+      <li>
+        <img class="thumb" src="https://placehold.co/80x60/e2e8f0/333?text=Cat+Cow" alt="Cat-Cow"
+          onerror="this.src='https://placehold.co/80x60/e2e8f0/333?text=Image+Error'; this.onerror=null;">
+        <strong>Cat‑Cow Flow</strong> – 1 min <a class="vid" href="#" target="_blank" rel="noopener noreferrer">▶
+          video</a>
+        <span class="how">On all fours, inhale to arch spine (Cow), exhale to round spine (Cat). Move with
+          breath.</span>
+      </li>
+      <li>
+        <img class="thumb" src="https://placehold.co/80x60/e2e8f0/333?text=World's+Greatest"
+          alt="World’s Greatest Stretch"
+          onerror="this.src='https://placehold.co/80x60/e2e8f0/333?text=Image+Error'; this.onerror=null;">
+        <strong>World’s Greatest Stretch</strong> – 1 min each side <a class="vid" href="#" target="_blank"
+          rel="noopener noreferrer">▶ video</a>
+        <span class="how">From lunge, place one hand down, rotate torso & reach other arm skyward. Sink hips.</span>
+      </li>
+      <li>
+        <img class="thumb" src="https://placehold.co/80x60/e2e8f0/333?text=Deep+Squat" alt="Deep Squat"
+          onerror="this.src='https://placehold.co/80x60/e2e8f0/333?text=Image+Error'; this.onerror=null;">
+        <strong>Deep Squat Hold</strong> – 1 min <a class="vid" href="#" target="_blank" rel="noopener noreferrer">▶
+          video</a>
+        <span class="how">Feet shoulder-width, sit low, keep heels flat, chest up. Rock gently for ankle/hip
+          mobility.</span>
+      </li>
+      <li>
+        <img class="thumb" src="https://placehold.co/80x60/e2e8f0/333?text=Dislocates" alt="Shoulder Dislocates"
+          onerror="this.src='https://placehold.co/80x60/e2e8f0/333?text=Image+Error'; this.onerror=null;">
+        <strong>Shoulder Dislocates (Band/Stick)</strong> – 10 reps <a class="vid" href="#" target="_blank"
+          rel="noopener noreferrer">▶ video</a>
+        <span class="how">Wide grip on band/stick, sweep arms overhead & behind back, keeping elbows straight. Opens
+          chest.</span>
+      </li>
+      <li>
+        <img class="thumb" src="https://placehold.co/80x60/e2e8f0/333?text=Hip+Circles" alt="Hip Circles"
+          onerror="this.src='https://placehold.co/80x60/e2e8f0/333?text=Image+Error'; this.onerror=null;">
+        <strong>Standing Hip Circles</strong> – 10 reps each way <a class="vid" href="#" target="_blank"
+          rel="noopener noreferrer">▶ video</a>
+        <span class="how">Hands on hips, feet stable, draw large, slow circles with your pelvis.</span>
+      </li>
+    </ul>
+    <p class="note">Goal: prime every major joint for the week ahead.</p>
+  </details>
+
+  <details data-day="Tuesday">
+    <summary>Tuesday · Lower Body Focus</summary>
+    <ul>
+      <li>
+        <img class="thumb" src="https://placehold.co/80x60/dbeafe/333?text=Leg+Swings" alt="Leg Swings"
+          onerror="this.src='https://placehold.co/80x60/dbeafe/333?text=Image+Error'; this.onerror=null;">
+        <strong>Dynamic Leg Swings</strong> – 10 each leg/direction <a class="vid" href="#" target="_blank"
+          rel="noopener noreferrer">▶ video</a>
+        <span class="how">Hold onto support. Swing leg forward/back & side-to-side (across body). Controlled
+          motion.</span>
+      </li>
+      <li>
+        <img class="thumb" src="https://placehold.co/80x60/dbeafe/333?text=Squat+Hold" alt="Squat Hold"
+          onerror="this.src='https://placehold.co/80x60/dbeafe/333?text=Image+Error'; this.onerror=null;">
+        <strong>Deep Squat Hold</strong> – 2 sets × 1 min <a class="vid" href="#" target="_blank"
+          rel="noopener noreferrer">▶ video</a>
+        <span class="how">Focus on maintaining depth, keeping chest up and heels down. Improves hip/ankle
+          mobility.</span>
+      </li>
+      <li>
+        <img class="thumb" src="https://placehold.co/80x60/dbeafe/333?text=Lizard+Lunge" alt="Lizard Lunge"
+          onerror="this.src='https://placehold.co/80x60/dbeafe/333?text=Image+Error'; this.onerror=null;">
+        <strong>Lizard Lunge</strong> – 1 min each side <a class="vid" href="#" target="_blank"
+          rel="noopener noreferrer">▶ video</a>
+        <span class="how">From lunge, step foot outside hand, sink hips forward and down to stretch hip flexors. Option:
+          forearms down.</span>
+      </li>
+      <li>
+        <img class="thumb" src="https://placehold.co/80x60/dbeafe/333?text=Frog+Pose" alt="Frog Pose"
+          onerror="this.src='https://placehold.co/80x60/dbeafe/333?text=Image+Error'; this.onerror=null;">
+        <strong>Frog Pose</strong> – 2 min <a class="vid" href="#" target="_blank" rel="noopener noreferrer">▶ video</a>
+        <span class="how">Knees wide (inner knees/ankles on floor), forearms down, push hips back gently. Stretches
+          inner thighs.</span>
+      </li>
+      <li>
+        <img class="thumb" src="https://placehold.co/80x60/dbeafe/333?text=90/90+Switches" alt="90/90"
+          onerror="this.src='https://placehold.co/80x60/dbeafe/333?text=Image+Error'; this.onerror=null;">
+        <strong>90/90 Hip Switches</strong> – 10 reps total <a class="vid" href="#" target="_blank"
+          rel="noopener noreferrer">▶ video</a>
+        <span class="how">Seated, legs bent 90° (one internal, one external rotation). Rotate knees side-to-side
+          smoothly.</span>
+      </li>
+      <li>
+        <img class="thumb" src="https://placehold.co/80x60/dbeafe/333?text=Half+Splits" alt="Half Splits"
+          onerror="this.src='https://placehold.co/80x60/dbeafe/333?text=Image+Error'; this.onerror=null;">
+        <strong>Half Splits (Ardha Hanumanasana)</strong> – 1 min each side <a class="vid" href="#" target="_blank"
+          rel="noopener noreferrer">▶ video</a>
+        <span class="how">From low lunge, shift hips back over rear knee, straighten front leg, flex foot. Hinge
+          forward.</span>
+      </li>
+      <li>
+        <img class="thumb" src="https://placehold.co/80x60/dbeafe/333?text=Pigeon+Pose" alt="Pigeon Pose"
+          onerror="this.src='https://placehold.co/80x60/dbeafe/333?text=Image+Error'; this.onerror=null;">
+        <strong>Pigeon Pose (Eka Pada Rajakapotasana)</strong> – 1–2 min each side <a class="vid" href="#"
+          target="_blank" rel="noopener noreferrer">▶ video</a>
+        <span class="how">Bring front shin across mat (adjust angle for comfort), square hips, extend back leg. Fold
+          forward if comfortable.</span>
+      </li>
+    </ul>
+    <p class="note">Goal: unlock hips for high steps, stemming, and drop-knees.</p>
+  </details>
+
+  <details data-day="Wednesday">
+    <summary>Wednesday · Rest / Light Yoga</summary>
+    <ul>
+      <li>
+        <img class="thumb" src="https://placehold.co/80x60/dcfce7/333?text=Sun+Salutation" alt="Sun Salutation"
+          onerror="this.src='https://placehold.co/80x60/dcfce7/333?text=Image+Error'; this.onerror=null;">
+        <strong>Sun Salutations (Surya Namaskar A)</strong> – 5–10 rounds <a class="vid" href="#" target="_blank"
+          rel="noopener noreferrer">▶ video</a>
+        <span class="how">Gentle flow linking breath with movement (Mountain, Forward Fold, Half Lift, Plank,
+          Chaturanga, Up-Dog, Down-Dog).</span>
+      </li>
+      <li>
+        <img class="thumb" src="https://placehold.co/80x60/dcfce7/333?text=Seated+Fold" alt="Forward Fold"
+          onerror="this.src='https://placehold.co/80x60/dcfce7/333?text=Image+Error'; this.onerror=null;">
+        <strong>Seated Forward Fold (Paschimottanasana)</strong> – 2 min <a class="vid" href="#" target="_blank"
+          rel="noopener noreferrer">▶ video</a>
+        <span class="how">Legs extended, hinge from hips (not waist), reach toward feet. Keep spine long. Use strap if
+          needed.</span>
+      </li>
+      <li>
+        <img class="thumb" src="https://placehold.co/80x60/dcfce7/333?text=Child's+Pose" alt="Child's Pose"
+          onerror="this.src='https://placehold.co/80x60/dcfce7/333?text=Image+Error'; this.onerror=null;">
+        <strong>Child’s Pose (Balasana)</strong> – 1-2 min <a class="vid" href="#" target="_blank"
+          rel="noopener noreferrer">▶ video</a>
+        <span class="how">Knees together or wide, sit back on heels, fold torso down, rest forehead. Arms forward or
+          back.</span>
+      </li>
+      <li>
+        <img class="thumb" src="https://placehold.co/80x60/dcfce7/333?text=Happy+Baby" alt="Happy Baby"
+          onerror="this.src='https://placehold.co/80x60/dcfce7/333?text=Image+Error'; this.onerror=null;">
+        <strong>Happy Baby Pose (Ananda Balasana)</strong> – 1 min <a class="vid" href="#" target="_blank"
+          rel="noopener noreferrer">▶ video</a>
+        <span class="how">Lie on back, bend knees toward armpits, grab outer feet or ankles. Gently rock
+          side-to-side.</span>
+      </li>
+    </ul>
+    <p class="note">Goal: active recovery, gentle mobility, and mental reset.</p>
+  </details>
+
+  <details data-day="Thursday">
+    <summary>Thursday · Hips & Core</summary>
+    <ul>
+      <li>
+        <img class="thumb" src="https://placehold.co/80x60/fee2e2/333?text=Butterfly" alt="Butterfly"
+          onerror="this.src='https://placehold.co/80x60/fee2e2/333?text=Image+Error'; this.onerror=null;">
+        <strong>Butterfly Stretch (Baddha Konasana)</strong> – 2 min <a class="vid" href="#" target="_blank"
+          rel="noopener noreferrer">▶ video</a>
+        <span class="how">Sit tall, soles of feet together, knees out. Gently press knees down or hinge forward.</span>
+      </li>
+      <li>
+        <img class="thumb" src="https://placehold.co/80x60/fee2e2/333?text=Bird+Dog" alt="Bird Dog"
+          onerror="this.src='https://placehold.co/80x60/fee2e2/333?text=Image+Error'; this.onerror=null;">
+        <strong>Bird Dog</strong> – 10 reps each side <a class="vid" href="#" target="_blank"
+          rel="noopener noreferrer">▶ video</a>
+        <span class="how">On all fours, extend opposite arm and leg simultaneously, keeping core tight and back flat.
+          Hold briefly.</span>
+      </li>
+      <li>
+        <img class="thumb" src="https://placehold.co/80x60/fee2e2/333?text=Plank+Hold" alt="Plank"
+          onerror="this.src='https://placehold.co/80x60/fee2e2/333?text=Image+Error'; this.onerror=null;">
+        <strong>Plank Hold</strong> – 3 sets × 30-60 sec <a class="vid" href="#" target="_blank"
+          rel="noopener noreferrer">▶ video</a>
+        <span class="how">Forearms or hands under shoulders, body in straight line from head to heels. Engage core,
+          don't let hips sag.</span>
+      </li>
+      <li>
+        <img class="thumb" src="https://placehold.co/80x60/fee2e2/333?text=Cossack+Squat" alt="Cossack Squat"
+          onerror="this.src='https://placehold.co/80x60/fee2e2/333?text=Image+Error'; this.onerror=null;">
+        <strong>Cossack Squat / Side Lunge Stretch</strong> – 1 min each side <a class="vid" href="#" target="_blank"
+          rel="noopener noreferrer">▶ video</a>
+        <span class="how">Wide stance, shift weight to one side, bending that knee and keeping other leg straight. Sink
+          low.</span>
+      </li>
+      <li>
+        <img class="thumb" src="https://placehold.co/80x60/fee2e2/333?text=Dead+Bug" alt="Dead Bug"
+          onerror="this.src='https://placehold.co/80x60/fee2e2/333?text=Image+Error'; this.onerror=null;">
+        <strong>Dead Bug</strong> – 10-12 reps total <a class="vid" href="#" target="_blank" rel="noopener noreferrer">▶
+          video</a>
+        <span class="how">Lie on back, knees bent 90°, arms up. Lower opposite arm and leg slowly, keeping lower back
+          pressed down.</span>
+      </li>
+    </ul>
+    <p class="note">Goal: strengthen core for stability and improve hip range for dynamic moves.</p>
+  </details>
+
+  <details data-day="Friday">
+    <summary>Friday · Shoulders & Spine</summary>
+    <ul>
+      <li>
+        <img class="thumb" src="https://placehold.co/80x60/e0e7ff/333?text=Wall+Angels" alt="Wall Angels"
+          onerror="this.src='https://placehold.co/80x60/e0e7ff/333?text=Image+Error'; this.onerror=null;">
+        <strong>Wall Angels / Wall Slides</strong> – 10-15 reps <a class="vid" href="#" target="_blank"
+          rel="noopener noreferrer">▶ video</a>
+        <span class="how">Stand with back against wall, arms bent 90° ('cactus arms'). Slide arms up wall, keeping
+          contact.</span>
+      </li>
+      <li>
+        <img class="thumb" src="https://placehold.co/80x60/e0e7ff/333?text=Chest+Stretch" alt="Chest Stretch"
+          onerror="this.src='https://placehold.co/80x60/e0e7ff/333?text=Image+Error'; this.onerror=null;">
+        <strong>Doorway Chest Stretch</strong> – 30 sec each side <a class="vid" href="#" target="_blank"
+          rel="noopener noreferrer">▶ video</a>
+        <span class="how">Place forearm on doorframe, elbow shoulder height. Step forward gently to feel stretch across
+          chest/shoulder.</span>
+      </li>
+      <li>
+        <img class="thumb" src="https://placehold.co/80x60/e0e7ff/333?text=Thread+Needle" alt="Thread the Needle"
+          onerror="this.src='https://placehold.co/80x60/e0e7ff/333?text=Image+Error'; this.onerror=null;">
+        <strong>Thread the Needle Pose</strong> – 1 min each side <a class="vid" href="#" target="_blank"
+          rel="noopener noreferrer">▶ video</a>
+        <span class="how">From all fours, reach one arm up, then 'thread' it under opposite armpit, lowering
+          shoulder/ear to mat.</span>
+      </li>
+      <li>
+        <img class="thumb" src="https://placehold.co/80x60/e0e7ff/333?text=Puppy+Pose" alt="Puppy Pose"
+          onerror="this.src='https://placehold.co/80x60/e0e7ff/333?text=Image+Error'; this.onerror=null;">
+        <strong>Puppy Pose (Uttana Shishosana)</strong> – 1-2 min <a class="vid" href="#" target="_blank"
+          rel="noopener noreferrer">▶ video</a>
+        <span class="how">From all fours, walk hands forward, keeping hips over knees. Melt chest/forehead towards
+          floor. Stretches lats/shoulders.</span>
+      </li>
+      <li>
+        <img class="thumb" src="https://placehold.co/80x60/e0e7ff/333?text=Spinal+Twist" alt="Spinal Twist"
+          onerror="this.src='https://placehold.co/80x60/e0e7ff/333?text=Image+Error'; this.onerror=null;">
+        <strong>Supine Spinal Twist</strong> – 1 min each side <a class="vid" href="#" target="_blank"
+          rel="noopener noreferrer">▶ video</a>
+        <span class="how">Lie on back, draw one knee to chest, then guide it across body. Keep shoulders grounded, gaze
+          opposite direction.</span>
+      </li>
+    </ul>
+    <p class="note">Goal: improve shoulder mobility for reaching and spinal flexibility for twisting moves.</p>
+  </details>
+
+  <details data-day="Saturday">
+    <summary>Saturday · Full Body & Splits Prep</summary>
+    <ul>
+      <li>
+        <img class="thumb" src="https://placehold.co/80x60/fef3c7/333?text=Cat+Cow" alt="Cat-Cow"
+          onerror="this.src='https://placehold.co/80x60/fef3c7/333?text=Image+Error'; this.onerror=null;">
+        <strong>Cat‑Cow Flow</strong> – 1 min <a class="vid" href="#" target="_blank" rel="noopener noreferrer">▶
+          video</a>
+        <span class="how">Warm up the spine before deeper stretches.</span>
+      </li>
+      <li>
+        <img class="thumb" src="https://placehold.co/80x60/fef3c7/333?text=World's+Greatest"
+          alt="World’s Greatest Stretch"
+          onerror="this.src='https://placehold.co/80x60/fef3c7/333?text=Image+Error'; this.onerror=null;">
+        <strong>World’s Greatest Stretch</strong> – 1 min each side <a class="vid" href="#" target="_blank"
+          rel="noopener noreferrer">▶ video</a>
+        <span class="how">Full body dynamic movement to prepare.</span>
+      </li>
+      <li>
+        <img class="thumb" src="https://placehold.co/80x60/fef3c7/333?text=Lunge+Quad" alt="Low Lunge Quad Stretch"
+          onerror="this.src='https://placehold.co/80x60/fef3c7/333?text=Image+Error'; this.onerror=null;">
+        <strong>Low Lunge Quad Stretch</strong> – 1 min each side <a class="vid" href="#" target="_blank"
+          rel="noopener noreferrer">▶ video</a>
+        <span class="how">In low lunge (back knee down), reach back for foot, gently pull heel towards glute. Stretches
+          hip flexor/quad.</span>
+      </li>
+      <li>
+        <img class="thumb" src="https://placehold.co/80x60/fef3c7/333?text=Half+Splits" alt="Half Splits"
+          onerror="this.src='https://placehold.co/80x60/fef3c7/333?text=Image+Error'; this.onerror=null;">
+        <strong>Half Splits (Deeper Hold)</strong> – 1-2 min each side <a class="vid" href="#" target="_blank"
+          rel="noopener noreferrer">▶ video</a>
+        <span class="how">Focus on hinging from hips, keeping front leg straight. Use blocks under hands if
+          needed.</span>
+      </li>
+      <li>
+        <img class="thumb" src="https://placehold.co/80x60/fef3c7/333?text=Wide+Fold" alt="Wide-Legged Forward Fold"
+          onerror="this.src='https://placehold.co/80x60/fef3c7/333?text=Image+Error'; this.onerror=null;">
+        <strong>Standing Wide-Legged Forward Fold (Prasarita Padottanasana)</strong> – 1-2 min <a class="vid" href="#"
+          target="_blank" rel="noopener noreferrer">▶ video</a>
+        <span class="how">Stand with feet wide, parallel. Hinge at hips, fold forward. Hands to floor/blocks/ankles.
+          Stretches hamstrings/inner thighs.</span>
+      </li>
+      <li>
+        <img class="thumb" src="https://placehold.co/80x60/fef3c7/333?text=Front+Splits" alt="Front Splits Prep"
+          onerror="this.src='https://placehold.co/80x60/fef3c7/333?text=Image+Error'; this.onerror=null;">
+        <strong>Front Splits Prep / Attempt</strong> – 1-2 min each side <a class="vid" href="#" target="_blank"
+          rel="noopener noreferrer">▶ video</a>
+        <span class="how">From half splits, slide front foot forward, back knee back. Use blocks under hands for
+          support. Only go as far as comfortable.</span>
+      </li>
+      <li>
+        <img class="thumb" src="https://placehold.co/80x60/fef3c7/333?text=Middle+Splits" alt="Middle Splits Prep"
+          onerror="this.src='https://placehold.co/80x60/fef3c7/333?text=Image+Error'; this.onerror=null;">
+        <strong>Middle Splits Prep / Frog / Straddle</strong> – 2 min <a class="vid" href="#" target="_blank"
+          rel="noopener noreferrer">▶ video</a>
+        <span class="how">Choose Frog pose or seated/standing straddle fold. Focus on inner thigh flexibility.</span>
+      </li>
+    </ul>
+    <p class="note">Goal: work towards greater flexibility in splits-related ranges, beneficial for wide stems and high
+      feet.</p>
+  </details>
+
+  <details data-day="Sunday">
+    <summary>Sunday · Rest / Gentle Stretch</summary>
+    <ul>
+      <li>
+        <img class="thumb" src="https://placehold.co/80x60/f3e8ff/333?text=Legs+Up+Wall" alt="Legs Up The Wall"
+          onerror="this.src='https://placehold.co/80x60/f3e8ff/333?text=Image+Error'; this.onerror=null;">
+        <strong>Legs Up The Wall Pose (Viparita Karani)</strong> – 5 min <a class="vid" href="#" target="_blank"
+          rel="noopener noreferrer">▶ video</a>
+        <span class="how">Sit sideways near wall, swing legs up wall, lie back. Hips close to wall. Restorative.</span>
+      </li>
+      <li>
+        <img class="thumb" src="https://placehold.co/80x60/f3e8ff/333?text=Reclined+Butterfly" alt="Reclined Butterfly"
+          onerror="this.src='https://placehold.co/80x60/f3e8ff/333?text=Image+Error'; this.onerror=null;">
+        <strong>Reclined Butterfly (Supta Baddha Konasana)</strong> – 2-3 min <a class="vid" href="#" target="_blank"
+          rel="noopener noreferrer">▶ video</a>
+        <span class="how">Lie on back, soles of feet together, knees fall open. Support knees with blocks if needed.
+          Gentle hip opener.</span>
+      </li>
+      <li>
+        <img class="thumb" src="https://placehold.co/80x60/f3e8ff/333?text=Gentle+Twist" alt="Gentle Spinal Twist"
+          onerror="this.src='https://placehold.co/80x60/f3e8ff/333?text=Image+Error'; this.onerror=null;">
+        <strong>Supine Spinal Twist (Gentle)</strong> – 1 min each side <a class="vid" href="#" target="_blank"
+          rel="noopener noreferrer">▶ video</a>
+        <span class="how">Repeat Friday's twist, focusing on relaxation rather than depth.</span>
+      </li>
+      <li>
+        <img class="thumb" src="https://placehold.co/80x60/f3e8ff/333?text=Savasana" alt="Savasana"
+          onerror="this.src='https://placehold.co/80x60/f3e8ff/333?text=Image+Error'; this.onerror=null;">
+        <strong>Corpse Pose (Savasana)</strong> – 5 min <a class="vid" href="#" target="_blank"
+          rel="noopener noreferrer">▶ video</a>
+        <span class="how">Lie flat on back, arms and legs relaxed slightly away from body. Focus on breath and
+          stillness.</span>
+      </li>
+    </ul>
+    <p class="note">Goal: complete rest or very light, restorative stretching to aid recovery.</p>
+  </details>
+
+  <p style="text-align:center; font-size:0.85rem; margin-top: 2rem; color: var(--note-text);">Disclaimer: Consult a
+    healthcare professional before starting any new exercise program. Listen to your body and modify as needed.</p>
+
+  <script>
+    // Function to set data-label attributes for table cells on mobile
+    function setupMobileTableLabels() {
+      const table = document.querySelector('table');
+      if (!table) return; // Exit if no table found
+
+      const headers = [];
+      table.querySelectorAll('thead th').forEach(header => {
+        headers.push(header.textContent);
+      });
+
+      table.querySelectorAll('tbody tr').forEach(row => {
+        row.querySelectorAll('td').forEach((cell, index) => {
+          if (headers[index]) { // Check if header exists for this index
+            cell.setAttribute('data-label', headers[index]);
+          }
+        });
+      });
+    }
+
+    // Function to expand the details section for the current day
+    function expandTodayDetails() {
+      const todayIndex = new Date().getDay(); // 0 = Sunday, 1 = Monday, ..., 6 = Saturday
+      const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+      const todayName = days[todayIndex];
+
+      // Find the details element with the matching data-day attribute
+      const todayDetails = document.querySelector(`details[data-day="${todayName}"]`);
+
+      if (todayDetails) {
+        todayDetails.open = true; // Expand the section
+      }
+    }
+
+    // Run functions when the DOM is fully loaded
+    document.addEventListener('DOMContentLoaded', function () {
+      setupMobileTableLabels();
+      expandTodayDetails();
+    });
+  </script>
+
+</body>
+
+</html>
