@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>KL-Divergence</title>
+  <style>
+    code {
+      white-space: pre-wrap;
+    }
+
+    span.smallcaps {
+      font-variant: small-caps;
+    }
+
+    div.columns {
+      display: flex;
+      gap: min(4vw, 1.5em);
+    }
+
+    div.column {
+      flex: auto;
+      overflow-x: auto;
+    }
+
+    div.hanging-indent {
+      margin-left: 1.5em;
+      text-indent: -1.5em;
+    }
+
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class] {
+      list-style: none;
+    }
+
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" href="https://tossatree.com/styles.css" />
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=K2D:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap");
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1><a href="../../index.html" class="home">Tossaporn (Tree) Saengja</a></h1>
+    <nav>
+      <a href="../../index.html">home</a>
+      <a href="../../assets/tree_cv.pdf">cv</a>
+      <a href="../index.html" class="active">writing</a>
+    </nav>
+  </header>
+  <header id="title-block-header">
+    <h1 class="title">KL-Divergence</h1>
+  </header>
+  <p><a href="https://www.youtube.com/@jbhuang0604">Jia-Bin Huang</a>
+    gives a very good intuition on <a href="https://www.youtube.com/watch?v=tXE23653JrU">KL-Divergence</a>–starting
+    with entropy and finishing with unbiased estimator.</p>
+  <p>what i learned:</p>
+  <ul>
+    <li>cross-entropy is an
+      entropy based on another different distribution</li>
+    <li>asymmetric metrics are more meaningful than symmetric metrics
+      <ul>
+        <li>“10cm taller/shorter” vs “10cm difference”</li>
+      </ul>
+    </li>
+    <li>approximating KL-Divergence – biased/variance
+      <ul>
+        <li>related blog post: <a href="http://joschu.net/blog/kl-approx.html"
+            class="uri">http://joschu.net/blog/kl-approx.html</a></li>
+        <li>“The general way to lower variance is with a control variate. I.e.,
+          take k1​ and add something that has expectation zero but is negatively
+          correlated with k1”</li>
+        <li>“The idea of measuring distance by looking at the difference between
+          a convex function and its tangent plane appears in many places. It’s
+          called a <a href="https://en.wikipedia.org/wiki/Bregman_divergence">Bregman
+            divergence</a> and has many beautiful properties.”</li>
+      </ul>
+    </li>
+  </ul>
+</body>
+
+</html>
