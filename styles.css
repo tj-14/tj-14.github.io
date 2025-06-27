@@ -1,5 +1,19 @@
+@import url("https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=K2D:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap");
+
+:root {
+  --bg-color: #fefef0;
+  --text-color: #000;
+  --link-color: #d90429;
+  --border-color: #ccc;
+  --timeline-marker-color: #000;
+  --timeline-border-color: #eee;
+  --timeline-date-color: #666;
+  --highlight-bg-color: #000;
+  --highlight-text-color: #fff;
+}
+
 body {
-  background-color: #fefef0;
+  background-color: var(--bg-color);
   margin: auto;
   max-width: 38rem;
   padding: 1.5rem;
@@ -7,11 +21,11 @@ body {
 }
 
 a:link {
-  color: #f01010;
+  color: var(--link-color);
 }
 
 a:visited {
-  color: #000;
+  color: var(--text-color);
 }
 
 h1 {
@@ -40,16 +54,16 @@ header {
 nav a {
   margin-left: 0.5rem;
   text-decoration: none;
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid var(--border-color);
   transition: border-color 0.2s ease;
 }
 
 nav a:hover {
-  border-bottom-color: #000;
+  border-bottom-color: var(--text-color);
 }
 
 nav a.active {
-  border-bottom: 0.1em solid #000;
+  border-bottom: 0.1em solid var(--text-color);
 }
 
 .intro {
@@ -58,7 +72,7 @@ nav a.active {
 
 .home {
   text-decoration: none;
-  color: #000;
+  color: var(--text-color);
 }
 
 .headshot {
@@ -69,7 +83,7 @@ nav a.active {
 }
 
 .timeline {
-  border-left: 0.0625rem solid #eee;
+  border-left: 0.0625rem solid var(--timeline-border-color);
   padding-left: 1.25rem;
   margin-bottom: 2.5rem;
 }
@@ -86,7 +100,7 @@ nav a.active {
   top: 0.65rem;
   width: 0.3rem;
   height: 0.3rem;
-  background-color: #000;
+  background-color: var(--timeline-marker-color);
 }
 
 .timeline-item.major::before {
@@ -108,7 +122,7 @@ nav a.active {
 }
 
 .timeline-date {
-  color: #666;
+  color: var(--timeline-date-color);
 }
 
 .timeline-content {
@@ -116,11 +130,11 @@ nav a.active {
 }
 
 .highlighted {
-  background-color: #000;
-  color: #fff;
+  background-color: var(--highlight-bg-color);
+  color: var(--highlight-text-color);
   padding: 0.8rem;
 }
 
 .highlighted .timeline-date {
-  color: #ccc;
+  color: var(--border-color);
 }
