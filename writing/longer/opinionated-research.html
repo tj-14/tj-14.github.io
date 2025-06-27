@@ -1,648 +1,592 @@
 <!doctype html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="generator" content="pandoc" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, user-scalable=yes"
-    />
-    <title>Opinionated Reference on Doing Research</title>
-    <style>
-      @import url("https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=K2D:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap");
-    </style>
-    <style>
-      code {
-        white-space: pre-wrap;
-      }
-      span.smallcaps {
-        font-variant: small-caps;
-      }
-      div.columns {
-        display: flex;
-        gap: min(4vw, 1.5em);
-      }
-      div.column {
-        flex: auto;
-        overflow-x: auto;
-      }
-      div.hanging-indent {
-        margin-left: 1.5em;
-        text-indent: -1.5em;
-      }
-      /* The extra [class] is a hack that increases specificity enough to
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Opinionated Reference on Doing Research</title>
+  <style>
+    code {
+      white-space: pre-wrap;
+    }
+
+    span.smallcaps {
+      font-variant: small-caps;
+    }
+
+    div.columns {
+      display: flex;
+      gap: min(4vw, 1.5em);
+    }
+
+    div.column {
+      flex: auto;
+      overflow-x: auto;
+    }
+
+    div.hanging-indent {
+      margin-left: 1.5em;
+      text-indent: -1.5em;
+    }
+
+    /* The extra [class] is a hack that increases specificity enough to
        override a similar rule in reveal.js */
-      ul.task-list[class] {
-        list-style: none;
-      }
-      ul.task-list li input[type="checkbox"] {
-        font-size: inherit;
-        width: 0.8em;
-        margin: 0 0.8em 0.2em -1.6em;
-        vertical-align: middle;
-      }
-    </style>
-    <link rel="stylesheet" href="https://tossatree.com/styles.css" />
-  </head>
-  <body>
-    <p><b>Tossaporn Saengja</b> <a href="javascript:history.back()">back</a></p>
-    <header id="title-block-header">
-      <h1 class="title">Opinionated Reference on Doing Research</h1>
-    </header>
-    <h1 id="personal-experience">Personal Experience</h1>
-    <ul>
-      <li>
-        Use all leverages:
-        <ul>
-          <li>
-            LLM
-            <ul>
-              <li>
-                Kickstart labor tasks: “Can you write a Python script to find
-                the most similar images <code>dir1</code> for each image in
-                <code>dir2</code> using L2?”
-              </li>
-              <li>
-                Brainstorm: “What are the best metrics for crafting a good food
-                nutrition dataset? Can you give pseudocode for each?”
-              </li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-      <li>Direction is more important than speed, but need both.</li>
-    </ul>
-    <h2 id="experience-at-vll">Experience at VLL</h2>
-    <ul>
-      <li>Get more ideas from reading or walking.</li>
-      <li>Capture ideas to any form of writing.</li>
-      <li>
-        Design experiments with clear purpose and <strong>hypothesis</strong>.
-      </li>
-      <li>
-        Make good visualizations.
-        <ul>
-          <li>Bad visualizations hide findings.</li>
-          <li>Rearrange visualizations when comparing two things.</li>
-          <li>There are always more ways to visualize data.</li>
-        </ul>
-      </li>
-      <li>
-        Always do anything that seems worth doing. Don’t be lazy.
-        <ul>
-          <li>It’s okay if it’s time-consuming the first time.</li>
-          <li>When it happens repeatedly, automate.</li>
-        </ul>
-      </li>
-      <li>
-        Always be aware of the process and optimize the bottleneck.
-        <ul>
-          <li>
-            Need to rearrange images for research update for the third time
-            -&gt; Ask ChatGPT for a Python script to automate it.
-          </li>
-          <li>
-            Difficult to run experiments on different machines -&gt; Set up a
-            container.
-          </li>
-        </ul>
-      </li>
-      <li>
-        Have multi-level perspectives, debug (smallest) to experiment design
-        (higher); know when to zoom in and out.
-      </li>
-      <li>
-        Fast feedback loop is very important.
-        <ul>
-          <li>
-            Set up environments, tools as much as possible to eliminate brain
-            blocks.
-          </li>
-          <li>Ideas slip away while waiting to load a model.</li>
-        </ul>
-      </li>
-      <li>
-        Introduction is more like an extended abstract.
-        <ul>
-          <li>Clear and concise.</li>
-          <li>Easy to understand.</li>
-          <li>Easy to see the contributions.</li>
-        </ul>
-      </li>
-    </ul>
-    <h2 id="examples">Examples</h2>
-    <ul>
-      <li>
-        Visualization
-        <ul>
-          <li>
-            spatial; reorganize to be close (horizontal &gt; vertical) &gt; far
-            apart
-          </li>
-          <li>scale; normalize/standardize &gt; different scales</li>
-        </ul>
-      </li>
-      <li>
-        Note-taking
-        <ul>
-          <li>
-            bad: note once and forget; because it is not good enough to be a
-            reference -&gt; make it YOUR own note.
-          </li>
-          <li>good: always refine and update</li>
-        </ul>
-      </li>
-    </ul>
+    ul.task-list[class] {
+      list-style: none;
+    }
+
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" href="https://tossatree.com/styles.css" />
+</head>
+
+<body>
+  <p><b>Tossaporn Saengja</b> <a href="javascript:history.back()">back</a></p>
+  <header id="title-block-header">
+    <h1 class="title">Opinionated Reference on Doing Research</h1>
+  </header>
+  <h1 id="personal-experience">Personal Experience</h1>
+  <ul>
+    <li>
+      Use all leverages:
+      <ul>
+        <li>
+          LLM
+          <ul>
+            <li>
+              Kickstart labor tasks: “Can you write a Python script to find
+              the most similar images <code>dir1</code> for each image in
+              <code>dir2</code> using L2?”
+            </li>
+            <li>
+              Brainstorm: “What are the best metrics for crafting a good food
+              nutrition dataset? Can you give pseudocode for each?”
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li>Direction is more important than speed, but need both.</li>
+  </ul>
+  <h2 id="experience-at-vll">Experience at VLL</h2>
+  <ul>
+    <li>Get more ideas from reading or walking.</li>
+    <li>Capture ideas to any form of writing.</li>
+    <li>
+      Design experiments with clear purpose and <strong>hypothesis</strong>.
+    </li>
+    <li>
+      Make good visualizations.
+      <ul>
+        <li>Bad visualizations hide findings.</li>
+        <li>Rearrange visualizations when comparing two things.</li>
+        <li>There are always more ways to visualize data.</li>
+      </ul>
+    </li>
+    <li>
+      Always do anything that seems worth doing. Don’t be lazy.
+      <ul>
+        <li>It’s okay if it’s time-consuming the first time.</li>
+        <li>When it happens repeatedly, automate.</li>
+      </ul>
+    </li>
+    <li>
+      Always be aware of the process and optimize the bottleneck.
+      <ul>
+        <li>
+          Need to rearrange images for research update for the third time
+          -&gt; Ask ChatGPT for a Python script to automate it.
+        </li>
+        <li>
+          Difficult to run experiments on different machines -&gt; Set up a
+          container.
+        </li>
+      </ul>
+    </li>
+    <li>
+      Have multi-level perspectives, debug (smallest) to experiment design
+      (higher); know when to zoom in and out.
+    </li>
+    <li>
+      Fast feedback loop is very important.
+      <ul>
+        <li>
+          Set up environments, tools as much as possible to eliminate brain
+          blocks.
+        </li>
+        <li>Ideas slip away while waiting to load a model.</li>
+      </ul>
+    </li>
+    <li>
+      Introduction is more like an extended abstract.
+      <ul>
+        <li>Clear and concise.</li>
+        <li>Easy to understand.</li>
+        <li>Easy to see the contributions.</li>
+      </ul>
+    </li>
+  </ul>
+  <h2 id="examples">Examples</h2>
+  <ul>
+    <li>
+      Visualization
+      <ul>
+        <li>
+          spatial; reorganize to be close (horizontal &gt; vertical) &gt; far
+          apart
+        </li>
+        <li>scale; normalize/standardize &gt; different scales</li>
+      </ul>
+    </li>
+    <li>
+      Note-taking
+      <ul>
+        <li>
+          bad: note once and forget; because it is not good enough to be a
+          reference -&gt; make it YOUR own note.
+        </li>
+        <li>good: always refine and update</li>
+      </ul>
+    </li>
+  </ul>
+  <hr />
+  <h1 id="john-schulman">John Schulman</h1>
+  <ul>
+    <li>
+      most solid, high-level advices<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>
+      on doing ML research.
+    </li>
+    <li>
+      Three rough forms of ultimate research goals
+      <ul>
+        <li>
+          groundbreaking result that changed perspective on some problem
+        </li>
+        <li>an algorithmic idea that’s reusable</li>
+        <li>a deep insight about some recurring questions</li>
+      </ul>
+    </li>
+    <li>research taste is important to be developed</li>
+    <li>
+      goal-driven to develop unique perspective; ask questions that nobody
+      else is asking
+    </li>
+    <li>
+      constrain search to solutions that seem general and can be applied to
+      other problems, e.g., avoid incorporating domain information into the
+      solution–achieve locomotion in simulation, in a general way that could
+      be applied to other problems.
+    </li>
+    <li>
+      use notebook
+      <ul>
+        <li>review every 1 or 2 weeks</li>
+        <li>read all daily entries</li>
+        <li>condense the information into a summary</li>
+        <li>
+          Usually they contains sections for experimental findings, insights
+          (which might come from yourself, colleagues, or things you read),
+          code progress (what did you implement), and next steps / future
+          work.
+        </li>
+      </ul>
+    </li>
+    <li>
+      switching problems too frequently (and giving up on promising ideas) is
+      a more common failure mode than not switching enough
+    </li>
+    <li>
+      one untested strategy is to devote some fixed time budget to trying out
+      new ideas that diverge from main line of work.
+      <ul>
+        <li>one day per week on something totally different</li>
+        <li>
+          This would constitute a kind of epsilon-greedy exploration, and it
+          would also help to broaden knowledge.
+        </li>
+      </ul>
+    </li>
+    <li>
+      The main ways to build ML knowledge are to read textbooks, theses and
+      papers; and to reimplement algorithms from these sources.
+    </li>
+    <li>
+      in early career, it is recommended to split time about evenly between
+      textbooks and papers.
+      <ul>
+        <li>
+          choose a small set of relevant textbooks and theses to gradually
+          work through
+        </li>
+        <li>
+          and you should reimplement the models and algorithms from your
+          favorite papers.
+        </li>
+        <li>
+          A couple of John’s favorites were Numerical Optimization by Nocedal
+          &amp; Wright, and Elements of Information Theory by Cover &amp;
+          Thomas.
+        </li>
+        <li>
+          Recent theses are often the best place to find a literature review
+          of an active field, but older theses also often contain valuable
+          gems of insight.
+        </li>
+        <li>
+          Textbooks and theses are good for building up your foundational
+          knowledge, but you’ll also need to read a lot of papers to bring
+          your knowledge up to the frontier.
+        </li>
+      </ul>
+    </li>
+  </ul>
+  <hr />
+  <h1 id="graham-neubig">Graham Neubig</h1>
+  <ul>
+    <li>
+      Noted from “CMU Advanced NLP Fall 2024 (9): Experimental Design and Data
+      Annotation”
+      <a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>
+      <a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>.
+    </li>
+    <li>
+      Rough research categories:
+      <ul>
+        <li>Applications-driven: make a better, useful system</li>
+        <li>Curiosity: understand something</li>
+        <li>
+          The ratio from ACL is about 95% applications-driven, 5% curiosity.
+        </li>
+      </ul>
+    </li>
+  </ul>
+  <h2 id="hypothesis">Hypothesis</h2>
+  <ul>
+    <li>“Yes-no” &gt; “how to.”</li>
+    <li>
+      A good hypothesis is explicit, precise, and falsifiable.
+      <ul>
+        <li>
+          Certain experiment result can validate or disprove the hypothesis.
+        </li>
+        <li>“Does X make Y better?” is not precise.</li>
+        <li>
+          “Do pre-trained embeddings help more when the size of the training
+          data is small?”
+        </li>
+      </ul>
+    </li>
+  </ul>
+  <h2 id="data-annotation">Data annotation</h2>
+  <ul>
+    <li>
+      Statistically significant difference needs a certain amount of data.
+    </li>
+    <li>
+      Given <strong>effect size</strong> and significance threshold, “Power
+      analysis” can estimate the amount, e.g., effect size is the expected
+      accuracy difference between tested models.
+    </li>
+  </ul>
+  <h2 id="workflow">Workflow</h2>
+  <ul>
+    <li>
+      Directory can be used in experiment steps modularization:
+      <code>data/</code>, <code>model/</code>, <code>result/</code>,
+      <code>log/</code>, <code>script/</code>, <code>note/</code>
+    </li>
+    <li>
+      Name directories by parameters, e.g.,
+      <code>transformer-layer8-node512-dropout0.5-labelsmooth0.02</code>
+    </li>
+    <li>
+      Planning results section in advance helps identify unjustified
+      experimental claims; create main table, use <code>TBD</code> placeholder
+    </li>
+    <li>Result reporting: generate paper latex directly from log files</li>
+  </ul>
+  <hr />
+  <h1 id="simon-peyton-jones">Simon Peyton Jones</h1>
+  <ul>
+    <li>
+      A classic on how to write a paper.
+      <a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>
+      (Graham: useful, timeless piece.)
+    </li>
+    <li>Seven simple, actionable suggestions</li>
+  </ul>
+  <h2 id="dont-wait-write">Don’t wait: write</h2>
+  <ul>
+    <li>Act as a lazy evaluation.</li>
+    <li>Forces to be clear, focused, and crystallises unknown.</li>
+    <li>Makes it easy to share.</li>
+    <li>Makes writing part of the research process.</li>
+  </ul>
+  <h2 id="identify-key-idea">Identify key idea</h2>
+  <ul>
+    <li>don’t need to be the best idea, refine it.</li>
+    <li>
+      paper should have <strong>one clear, sharp idea</strong> and be
+      <strong>explicit</strong>
+      <ul>
+        <li>“The main idea of this paper is …”</li>
+        <li>
+          “In this section we present the main contributions of the paper.”
+        </li>
+      </ul>
+    </li>
+    <li>review: “I believe the main idea is …”</li>
+    <li>fool-proof the writing</li>
+  </ul>
+  <h2 id="tell-a-story">Tell a story</h2>
+  <ul>
+    <li>
+      imagine explaining at a whiteboard to a friend
+      <ul>
+        <li>here’s a problem. it’s interesting and unsolved.</li>
+        <li>here’s my idea</li>
+        <li>it works. compare with others.</li>
+      </ul>
+    </li>
+    <li>
+      out of 1000 readers on the title, only 3 readers will read the details.
+    </li>
+  </ul>
+  <h2 id="nail-your-contributions-to-the-mast">
+    Nail your contributions to the mast
+  </h2>
+  <ul>
+    <li>
+      don’t waste time. state what’s interesting. don’t state the obvious.
+      <ul>
+        <li>
+          bad: “computer programs often have bugs. it is very important to
+          eliminate these bugs …”
+        </li>
+        <li>
+          good: “consider this program, which has an interesting bug … We will
+          debug this.”
+        </li>
+      </ul>
+    </li>
+    <li>should be refutable.</li>
+    <li>bulleted list</li>
+    <li>
+      “We give the syntax and semantics … (Section 3)” &gt; “rest of this
+      paper is … Section 3 provides …”
+    </li>
+    <li>
+      page one is very important.
+      <ul>
+        <li>is every section referred to from the first page?</li>
+        <li>evidence supports claims from page one</li>
+      </ul>
+    </li>
+  </ul>
+  <h2 id="related-work-later">Related work: later</h2>
+  <ul>
+    <li>it’s tiring since it’s very compressed.</li>
+    <li>
+      be generous to the competition. “in his inspiring paper […]… We develop
+      his foundation …”
+    </li>
+    <li>
+      acknowledge help from people, and also acknowledge weaknesses in our
+      approach.
+    </li>
+    <li>provide value judgement, not just a list of references.</li>
+  </ul>
+  <h2 id="put-your-readers-first">Put your readers first</h2>
+  <ul>
+    <li>
+      don’t send them to sleep or stupidity; if the idea is clever, readers
+      will find it.
+    </li>
+    <li>explain with examples, and generalize</li>
+    <li>get help, each reader can read for the first time once.</li>
+  </ul>
+  <h2 id="listen-to-your-readers">Listen to your readers</h2>
+  <ul>
+    <li>
+      explain desired feedback (e.g. “i got lost here” &gt; “jarva is
+      mis-spelt”)
+    </li>
+    <li>“could you help me ensure that I describe your work fairly?”</li>
+    <li>treat every review like gold dust.</li>
+    <li>
+      read every criticism as a positive suggestion for something we could
+      explain more clearly.
+    </li>
+    <li>
+      fix the paper so that X is apparent even to the stupidest reader. &gt;
+      “you stupid person, I meant X”
+    </li>
+    <li>thank the reviewers for their time.</li>
+  </ul>
+  <hr />
+  <h2 id="short-opinions">Short Opinions</h2>
+  <ol type="1">
+    <li>
+      How to publish a paper at CVPR
+      <a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a>
+      gives a reviewer perspective.
+      <ul>
+        <li>
+          Given 70% rejection rate, reviewer’s job is to find
+          <strong>ANY</strong> reason to reject the paper
+        </li>
+        <li>“The Cockroach” is a bland paper that is hard to kill.</li>
+        <li>
+          “The Puppy with 6 toes” is a delightful paper that is easy to kill.
+        </li>
+      </ul>
+    </li>
+    <li>
+      The Craft of Writing Effectively
+      <a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a>
+      is radical, unconventional, but very useful
+      <ul>
+        <li>Write to change ideas, not just explain.</li>
+        <li>Write <strong>VALUES</strong>. Useless pieces won’t be read.</li>
+        <li>50% of PhD time is used to know the readers in the field.</li>
+        <li>Problem + solution is better than background + thesis.</li>
+        <li>Learn the language code</li>
+        <li>Notice what construes <em>values</em> in the papers.</li>
+      </ul>
+    </li>
+    <li>
+      How to do Research At the MIT AI Lab
+      <a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a>
+      is outdated but contains timeless advices.
+      <ul>
+        <li>It paints the setting of good interactions within a lab.</li>
+        <li>Connection helps stay informed on the state-of-the-art.</li>
+        <li>
+          Alan Lakien’s “How to Get Control of Your Time and Your Life” is a
+          good book.
+        </li>
+      </ul>
+    </li>
+    <li>
+      Writing Advice for Fledging Machine Learning Researchers<a href="#fn8" class="footnote-ref" id="fnref8"
+        role="doc-noteref"><sup>8</sup></a>
+      and The Last Mile of Creating Publication-Ready Plots
+      <a href="#fn9" class="footnote-ref" id="fnref9" role="doc-noteref"><sup>9</sup></a>
+      - small details, solid advice on writing.
+    </li>
+  </ol>
+  <h1 id="recommended-resources-in-order">Recommended Resources in Order</h1>
+  <ol type="1">
+    <li>
+      An Opinionated Guide to ML Research
+      <a href="#fn10" class="footnote-ref" id="fnref10" role="doc-noteref"><sup>10</sup></a>
+      (<a href="#john-schulman" class="wikilink">#john-schulman</a>)
+    </li>
+    <li>
+      How to Read a Paper
+      <a href="#fn11" class="footnote-ref" id="fnref11" role="doc-noteref"><sup>11</sup></a>
+    </li>
+    <li>
+      How to write a great research paper
+      <a href="#fn12" class="footnote-ref" id="fnref12" role="doc-noteref"><sup>12</sup></a>
+      (<a href="#simon-peyton-jones" class="wikilink">#simon-peyton-jones</a>)
+    </li>
+  </ol>
+  <section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
     <hr />
-    <h1 id="john-schulman">John Schulman</h1>
-    <ul>
-      <li>
-        most solid, high-level advices<a
-          href="#fn1"
-          class="footnote-ref"
-          id="fnref1"
-          role="doc-noteref"
-          ><sup>1</sup></a
-        >
-        on doing ML research.
+    <ol>
+      <li id="fn1">
+        <p>
+          <a href="http://joschu.net/blog/opinionated-guide-ml-research.html"
+            class="uri">http://joschu.net/blog/opinionated-guide-ml-research.html</a><a href="#fnref1"
+            class="footnote-back" role="doc-backlink">↩︎</a>
+        </p>
       </li>
-      <li>
-        Three rough forms of ultimate research goals
-        <ul>
-          <li>
-            groundbreaking result that changed perspective on some problem
-          </li>
-          <li>an algorithmic idea that’s reusable</li>
-          <li>a deep insight about some recurring questions</li>
-        </ul>
+      <li id="fn2">
+        <p>
+          <a href="https://www.youtube.com/watch?v=hs37ze1j41A"
+            class="uri">https://www.youtube.com/watch?v=hs37ze1j41A</a><a href="#fnref2" class="footnote-back"
+            role="doc-backlink">↩︎</a>
+        </p>
       </li>
-      <li>research taste is important to be developed</li>
-      <li>
-        goal-driven to develop unique perspective; ask questions that nobody
-        else is asking
+      <li id="fn3">
+        <p>
+          <a href="https://phontron.com/class/anlp-fall2024/assets/slides/anlp-09-experimentation.pdf"
+            class="uri">https://phontron.com/class/anlp-fall2024/assets/slides/anlp-09-experimentation.pdf</a><a
+            href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a>
+        </p>
       </li>
-      <li>
-        constrain search to solutions that seem general and can be applied to
-        other problems, e.g., avoid incorporating domain information into the
-        solution–achieve locomotion in simulation, in a general way that could
-        be applied to other problems.
+      <li id="fn4">
+        <p>
+          <a href="https://www.microsoft.com/en-us/research/academic-program/write-great-research-paper/"
+            class="uri">https://www.microsoft.com/en-us/research/academic-program/write-great-research-paper/</a><a
+            href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a>
+        </p>
       </li>
-      <li>
-        use notebook
-        <ul>
-          <li>review every 1 or 2 weeks</li>
-          <li>read all daily entries</li>
-          <li>condense the information into a summary</li>
-          <li>
-            Usually they contains sections for experimental findings, insights
-            (which might come from yourself, colleagues, or things you read),
-            code progress (what did you implement), and next steps / future
-            work.
-          </li>
-        </ul>
+      <li id="fn5">
+        <p>
+          <a href="https://billf.mit.edu/sites/default/files/documents/cvprPapers.pdf"
+            class="uri">https://billf.mit.edu/sites/default/files/documents/cvprPapers.pdf</a><a href="#fnref5"
+            class="footnote-back" role="doc-backlink">↩︎</a>
+        </p>
       </li>
-      <li>
-        switching problems too frequently (and giving up on promising ideas) is
-        a more common failure mode than not switching enough
+      <li id="fn6">
+        <p>
+          <a href="https://www.youtube.com/watch?v=vtIzMaLkCaM"
+            class="uri">https://www.youtube.com/watch?v=vtIzMaLkCaM</a><a href="#fnref6" class="footnote-back"
+            role="doc-backlink">↩︎</a>
+        </p>
       </li>
-      <li>
-        one untested strategy is to devote some fixed time budget to trying out
-        new ideas that diverge from main line of work.
-        <ul>
-          <li>one day per week on something totally different</li>
-          <li>
-            This would constitute a kind of epsilon-greedy exploration, and it
-            would also help to broaden knowledge.
-          </li>
-        </ul>
+      <li id="fn7">
+        <p>
+          <a href="https://people.cs.umass.edu/~emery/misc/how-to.pdf"
+            class="uri">https://people.cs.umass.edu/~emery/misc/how-to.pdf</a><a href="#fnref7" class="footnote-back"
+            role="doc-backlink">↩︎</a>
+        </p>
       </li>
-      <li>
-        The main ways to build ML knowledge are to read textbooks, theses and
-        papers; and to reimplement algorithms from these sources.
+      <li id="fn8">
+        <p>
+          <a href="https://agustinus.kristia.de/blog/writing-advice/"
+            class="uri">https://agustinus.kristia.de/blog/writing-advice/</a><a href="#fnref8" class="footnote-back"
+            role="doc-backlink">↩︎</a>
+        </p>
       </li>
-      <li>
-        in early career, it is recommended to split time about evenly between
-        textbooks and papers.
-        <ul>
-          <li>
-            choose a small set of relevant textbooks and theses to gradually
-            work through
-          </li>
-          <li>
-            and you should reimplement the models and algorithms from your
-            favorite papers.
-          </li>
-          <li>
-            A couple of John’s favorites were Numerical Optimization by Nocedal
-            &amp; Wright, and Elements of Information Theory by Cover &amp;
-            Thomas.
-          </li>
-          <li>
-            Recent theses are often the best place to find a literature review
-            of an active field, but older theses also often contain valuable
-            gems of insight.
-          </li>
-          <li>
-            Textbooks and theses are good for building up your foundational
-            knowledge, but you’ll also need to read a lot of papers to bring
-            your knowledge up to the frontier.
-          </li>
-        </ul>
+      <li id="fn9">
+        <p>
+          <a href="https://agustinus.kristia.de/blog/plotting/"
+            class="uri">https://agustinus.kristia.de/blog/plotting/</a><a href="#fnref9" class="footnote-back"
+            role="doc-backlink">↩︎</a>
+        </p>
       </li>
-    </ul>
-    <hr />
-    <h1 id="graham-neubig">Graham Neubig</h1>
-    <ul>
-      <li>
-        Noted from “CMU Advanced NLP Fall 2024 (9): Experimental Design and Data
-        Annotation”
-        <a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"
-          ><sup>2</sup></a
-        >
-        <a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"
-          ><sup>3</sup></a
-        >.
+      <li id="fn10">
+        <p>
+          <a href="http://joschu.net/blog/opinionated-guide-ml-research.html"
+            class="uri">http://joschu.net/blog/opinionated-guide-ml-research.html</a><a href="#fnref10"
+            class="footnote-back" role="doc-backlink">↩︎</a>
+        </p>
       </li>
-      <li>
-        Rough research categories:
-        <ul>
-          <li>Applications-driven: make a better, useful system</li>
-          <li>Curiosity: understand something</li>
-          <li>
-            The ratio from ACL is about 95% applications-driven, 5% curiosity.
-          </li>
-        </ul>
+      <li id="fn11">
+        <p>
+          <a href="https://web.stanford.edu/class/ee384m/Handouts/HowtoReadPaper.pdf"
+            class="uri">https://web.stanford.edu/class/ee384m/Handouts/HowtoReadPaper.pdf</a><a href="#fnref11"
+            class="footnote-back" role="doc-backlink">↩︎</a>
+        </p>
       </li>
-    </ul>
-    <h2 id="hypothesis">Hypothesis</h2>
-    <ul>
-      <li>“Yes-no” &gt; “how to.”</li>
-      <li>
-        A good hypothesis is explicit, precise, and falsifiable.
-        <ul>
-          <li>
-            Certain experiment result can validate or disprove the hypothesis.
-          </li>
-          <li>“Does X make Y better?” is not precise.</li>
-          <li>
-            “Do pre-trained embeddings help more when the size of the training
-            data is small?”
-          </li>
-        </ul>
-      </li>
-    </ul>
-    <h2 id="data-annotation">Data annotation</h2>
-    <ul>
-      <li>
-        Statistically significant difference needs a certain amount of data.
-      </li>
-      <li>
-        Given <strong>effect size</strong> and significance threshold, “Power
-        analysis” can estimate the amount, e.g., effect size is the expected
-        accuracy difference between tested models.
-      </li>
-    </ul>
-    <h2 id="workflow">Workflow</h2>
-    <ul>
-      <li>
-        Directory can be used in experiment steps modularization:
-        <code>data/</code>, <code>model/</code>, <code>result/</code>,
-        <code>log/</code>, <code>script/</code>, <code>note/</code>
-      </li>
-      <li>
-        Name directories by parameters, e.g.,
-        <code>transformer-layer8-node512-dropout0.5-labelsmooth0.02</code>
-      </li>
-      <li>
-        Planning results section in advance helps identify unjustified
-        experimental claims; create main table, use <code>TBD</code> placeholder
-      </li>
-      <li>Result reporting: generate paper latex directly from log files</li>
-    </ul>
-    <hr />
-    <h1 id="simon-peyton-jones">Simon Peyton Jones</h1>
-    <ul>
-      <li>
-        A classic on how to write a paper.
-        <a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"
-          ><sup>4</sup></a
-        >
-        (Graham: useful, timeless piece.)
-      </li>
-      <li>Seven simple, actionable suggestions</li>
-    </ul>
-    <h2 id="dont-wait-write">Don’t wait: write</h2>
-    <ul>
-      <li>Act as a lazy evaluation.</li>
-      <li>Forces to be clear, focused, and crystallises unknown.</li>
-      <li>Makes it easy to share.</li>
-      <li>Makes writing part of the research process.</li>
-    </ul>
-    <h2 id="identify-key-idea">Identify key idea</h2>
-    <ul>
-      <li>don’t need to be the best idea, refine it.</li>
-      <li>
-        paper should have <strong>one clear, sharp idea</strong> and be
-        <strong>explicit</strong>
-        <ul>
-          <li>“The main idea of this paper is …”</li>
-          <li>
-            “In this section we present the main contributions of the paper.”
-          </li>
-        </ul>
-      </li>
-      <li>review: “I believe the main idea is …”</li>
-      <li>fool-proof the writing</li>
-    </ul>
-    <h2 id="tell-a-story">Tell a story</h2>
-    <ul>
-      <li>
-        imagine explaining at a whiteboard to a friend
-        <ul>
-          <li>here’s a problem. it’s interesting and unsolved.</li>
-          <li>here’s my idea</li>
-          <li>it works. compare with others.</li>
-        </ul>
-      </li>
-      <li>
-        out of 1000 readers on the title, only 3 readers will read the details.
-      </li>
-    </ul>
-    <h2 id="nail-your-contributions-to-the-mast">
-      Nail your contributions to the mast
-    </h2>
-    <ul>
-      <li>
-        don’t waste time. state what’s interesting. don’t state the obvious.
-        <ul>
-          <li>
-            bad: “computer programs often have bugs. it is very important to
-            eliminate these bugs …”
-          </li>
-          <li>
-            good: “consider this program, which has an interesting bug … We will
-            debug this.”
-          </li>
-        </ul>
-      </li>
-      <li>should be refutable.</li>
-      <li>bulleted list</li>
-      <li>
-        “We give the syntax and semantics … (Section 3)” &gt; “rest of this
-        paper is … Section 3 provides …”
-      </li>
-      <li>
-        page one is very important.
-        <ul>
-          <li>is every section referred to from the first page?</li>
-          <li>evidence supports claims from page one</li>
-        </ul>
-      </li>
-    </ul>
-    <h2 id="related-work-later">Related work: later</h2>
-    <ul>
-      <li>it’s tiring since it’s very compressed.</li>
-      <li>
-        be generous to the competition. “in his inspiring paper […]… We develop
-        his foundation …”
-      </li>
-      <li>
-        acknowledge help from people, and also acknowledge weaknesses in our
-        approach.
-      </li>
-      <li>provide value judgement, not just a list of references.</li>
-    </ul>
-    <h2 id="put-your-readers-first">Put your readers first</h2>
-    <ul>
-      <li>
-        don’t send them to sleep or stupidity; if the idea is clever, readers
-        will find it.
-      </li>
-      <li>explain with examples, and generalize</li>
-      <li>get help, each reader can read for the first time once.</li>
-    </ul>
-    <h2 id="listen-to-your-readers">Listen to your readers</h2>
-    <ul>
-      <li>
-        explain desired feedback (e.g. “i got lost here” &gt; “jarva is
-        mis-spelt”)
-      </li>
-      <li>“could you help me ensure that I describe your work fairly?”</li>
-      <li>treat every review like gold dust.</li>
-      <li>
-        read every criticism as a positive suggestion for something we could
-        explain more clearly.
-      </li>
-      <li>
-        fix the paper so that X is apparent even to the stupidest reader. &gt;
-        “you stupid person, I meant X”
-      </li>
-      <li>thank the reviewers for their time.</li>
-    </ul>
-    <hr />
-    <h2 id="short-opinions">Short Opinions</h2>
-    <ol type="1">
-      <li>
-        How to publish a paper at CVPR
-        <a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"
-          ><sup>5</sup></a
-        >
-        gives a reviewer perspective.
-        <ul>
-          <li>
-            Given 70% rejection rate, reviewer’s job is to find
-            <strong>ANY</strong> reason to reject the paper
-          </li>
-          <li>“The Cockroach” is a bland paper that is hard to kill.</li>
-          <li>
-            “The Puppy with 6 toes” is a delightful paper that is easy to kill.
-          </li>
-        </ul>
-      </li>
-      <li>
-        The Craft of Writing Effectively
-        <a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"
-          ><sup>6</sup></a
-        >
-        is radical, unconventional, but very useful
-        <ul>
-          <li>Write to change ideas, not just explain.</li>
-          <li>Write <strong>VALUES</strong>. Useless pieces won’t be read.</li>
-          <li>50% of PhD time is used to know the readers in the field.</li>
-          <li>Problem + solution is better than background + thesis.</li>
-          <li>Learn the language code</li>
-          <li>Notice what construes <em>values</em> in the papers.</li>
-        </ul>
-      </li>
-      <li>
-        How to do Research At the MIT AI Lab
-        <a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"
-          ><sup>7</sup></a
-        >
-        is outdated but contains timeless advices.
-        <ul>
-          <li>It paints the setting of good interactions within a lab.</li>
-          <li>Connection helps stay informed on the state-of-the-art.</li>
-          <li>
-            Alan Lakien’s “How to Get Control of Your Time and Your Life” is a
-            good book.
-          </li>
-        </ul>
-      </li>
-      <li>
-        Writing Advice for Fledging Machine Learning Researchers<a
-          href="#fn8"
-          class="footnote-ref"
-          id="fnref8"
-          role="doc-noteref"
-          ><sup>8</sup></a
-        >
-        and The Last Mile of Creating Publication-Ready Plots
-        <a href="#fn9" class="footnote-ref" id="fnref9" role="doc-noteref"
-          ><sup>9</sup></a
-        >
-        - small details, solid advice on writing.
+      <li id="fn12">
+        <p>
+          <a href="https://www.microsoft.com/en-us/research/academic-program/write-great-research-paper/"
+            class="uri">https://www.microsoft.com/en-us/research/academic-program/write-great-research-paper/</a><a
+            href="#fnref12" class="footnote-back" role="doc-backlink">↩︎</a>
+        </p>
       </li>
     </ol>
-    <h1 id="recommended-resources-in-order">Recommended Resources in Order</h1>
-    <ol type="1">
-      <li>
-        An Opinionated Guide to ML Research
-        <a href="#fn10" class="footnote-ref" id="fnref10" role="doc-noteref"
-          ><sup>10</sup></a
-        >
-        (<a href="#john-schulman" class="wikilink">#john-schulman</a>)
-      </li>
-      <li>
-        How to Read a Paper
-        <a href="#fn11" class="footnote-ref" id="fnref11" role="doc-noteref"
-          ><sup>11</sup></a
-        >
-      </li>
-      <li>
-        How to write a great research paper
-        <a href="#fn12" class="footnote-ref" id="fnref12" role="doc-noteref"
-          ><sup>12</sup></a
-        >
-        (<a href="#simon-peyton-jones" class="wikilink">#simon-peyton-jones</a>)
-      </li>
-    </ol>
-    <section
-      id="footnotes"
-      class="footnotes footnotes-end-of-document"
-      role="doc-endnotes"
-    >
-      <hr />
-      <ol>
-        <li id="fn1">
-          <p>
-            <a
-              href="http://joschu.net/blog/opinionated-guide-ml-research.html"
-              class="uri"
-              >http://joschu.net/blog/opinionated-guide-ml-research.html</a
-            ><a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a>
-          </p>
-        </li>
-        <li id="fn2">
-          <p>
-            <a href="https://www.youtube.com/watch?v=hs37ze1j41A" class="uri"
-              >https://www.youtube.com/watch?v=hs37ze1j41A</a
-            ><a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a>
-          </p>
-        </li>
-        <li id="fn3">
-          <p>
-            <a
-              href="https://phontron.com/class/anlp-fall2024/assets/slides/anlp-09-experimentation.pdf"
-              class="uri"
-              >https://phontron.com/class/anlp-fall2024/assets/slides/anlp-09-experimentation.pdf</a
-            ><a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a>
-          </p>
-        </li>
-        <li id="fn4">
-          <p>
-            <a
-              href="https://www.microsoft.com/en-us/research/academic-program/write-great-research-paper/"
-              class="uri"
-              >https://www.microsoft.com/en-us/research/academic-program/write-great-research-paper/</a
-            ><a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a>
-          </p>
-        </li>
-        <li id="fn5">
-          <p>
-            <a
-              href="https://billf.mit.edu/sites/default/files/documents/cvprPapers.pdf"
-              class="uri"
-              >https://billf.mit.edu/sites/default/files/documents/cvprPapers.pdf</a
-            ><a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a>
-          </p>
-        </li>
-        <li id="fn6">
-          <p>
-            <a href="https://www.youtube.com/watch?v=vtIzMaLkCaM" class="uri"
-              >https://www.youtube.com/watch?v=vtIzMaLkCaM</a
-            ><a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a>
-          </p>
-        </li>
-        <li id="fn7">
-          <p>
-            <a
-              href="https://people.cs.umass.edu/~emery/misc/how-to.pdf"
-              class="uri"
-              >https://people.cs.umass.edu/~emery/misc/how-to.pdf</a
-            ><a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a>
-          </p>
-        </li>
-        <li id="fn8">
-          <p>
-            <a
-              href="https://agustinus.kristia.de/blog/writing-advice/"
-              class="uri"
-              >https://agustinus.kristia.de/blog/writing-advice/</a
-            ><a href="#fnref8" class="footnote-back" role="doc-backlink">↩︎</a>
-          </p>
-        </li>
-        <li id="fn9">
-          <p>
-            <a href="https://agustinus.kristia.de/blog/plotting/" class="uri"
-              >https://agustinus.kristia.de/blog/plotting/</a
-            ><a href="#fnref9" class="footnote-back" role="doc-backlink">↩︎</a>
-          </p>
-        </li>
-        <li id="fn10">
-          <p>
-            <a
-              href="http://joschu.net/blog/opinionated-guide-ml-research.html"
-              class="uri"
-              >http://joschu.net/blog/opinionated-guide-ml-research.html</a
-            ><a href="#fnref10" class="footnote-back" role="doc-backlink"
-              >↩︎</a
-            >
-          </p>
-        </li>
-        <li id="fn11">
-          <p>
-            <a
-              href="https://web.stanford.edu/class/ee384m/Handouts/HowtoReadPaper.pdf"
-              class="uri"
-              >https://web.stanford.edu/class/ee384m/Handouts/HowtoReadPaper.pdf</a
-            ><a href="#fnref11" class="footnote-back" role="doc-backlink"
-              >↩︎</a
-            >
-          </p>
-        </li>
-        <li id="fn12">
-          <p>
-            <a
-              href="https://www.microsoft.com/en-us/research/academic-program/write-great-research-paper/"
-              class="uri"
-              >https://www.microsoft.com/en-us/research/academic-program/write-great-research-paper/</a
-            ><a href="#fnref12" class="footnote-back" role="doc-backlink"
-              >↩︎</a
-            >
-          </p>
-        </li>
-      </ol>
-    </section>
-  </body>
+  </section>
+</body>
+
 </html>
