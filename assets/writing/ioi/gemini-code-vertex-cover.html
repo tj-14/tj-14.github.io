@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vertex Cover Solver - Fixed Logic</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background: #f0f2f5; padding: 20px; color: #333; }
+        .container { max-width: 1000px; margin: 0 auto; background: white; padding: 25px; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        .layout { display: grid; grid-template-columns: 320px 1fr; gap: 20px; }
+        .panel { background: #f8f9fa; padding: 15px; border-radius: 8px; border: 1px solid #ddd; }
+        textarea { width: 100%; box-sizing: border-box; font-family: monospace; resize: vertical; }
+        button { width: 100%; padding: 10px; margin: 10px 0; cursor: pointer; background: #3498db; color: white; border: none; border-radius: 5px; font-weight: bold; }
+        button:hover { background: #2980b9; }
+        #viz_container { width: 100%; height: 450px; background: white; border: 1px solid #eee; border-radius: 8px; }
+        #log { background: #2c3e50; color: #ecf0f1; padding: 15px; height: 150px; overflow-y: auto; font-family: monospace; font-size: 13px; border-radius: 5px; }
+        .node { stroke: #2c3e50; stroke-width: 2; fill: #fff; transition: fill 0.3s; }
+        .node.covered { fill: #2ecc71; stroke: #27ae60; }
+        .node.kernel { fill: #e67e22; stroke: #d35400; }
+        .edge { stroke: #bdc3c7; stroke-width: 2; }
+        .edge.active { stroke: #34495e; stroke-width: 3; }
+        .edge.highlight { stroke: #9b59b6; stroke-width: 5; }
+        .controls { display: flex; justify-content: center; gap: 10px; margin-top: 10px; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Fixed Vertex Cover Solver</h2>
+    <div class="layout">
+        <div class="panel">
+            <label>Vertices (n):</label>
+            <input type="number" id="n" value="6" style="width: 50px">
+            <label>Budget (k):</label>
+            <input type="number" id="k" value="2" style="width: 50px">
+            
+            <p><label>Edges (u v):</label></p>
+            <textarea id="edgeInput" rows="10">0 1
+0 2
+0 3
+0 4
+0 5
+1 2</textarea>
+            <button onclick="startSolver()">Initialize Solver</button>
+            <div id="log">Logs will appear here...</div>
+        </div>
+
+        <div>
+            <div id="viz_container"></div>
+            <div class="controls">
+                <button onclick="moveStep(-1)" id="prevBtn" style="width: 100px" disabled>Back</button>
+                <span id="stepCounter" style="line-height: 40px">Step: 0 / 0</span>
+                <button onclick="moveStep(1)" id="nextBtn" style="width: 100px" disabled>Next</button>
+            </div>
+            <p style="font-size: 12px; color: #666; text-align: center;">
+                <b>Orange</b>: Kernelization (deg > k) | <b>Green</b>: In Cover | <b>Purple</b>: Branching Edge
+            </p>
+        </div>
+    </div>
+</div>
+
+<script>
+    let history = [];
+    let currentStep = 0;
+    const svgNS = "http://www.w3.org/2000/svg";
+
+    function logMsg(msg) {
+        const log = document.getElementById('log');
+        log.innerHTML += `<div>> ${msg}</div>`;
+        log.scrollTop = log.scrollHeight;
+    }
+
+    function cloneGraph(g) { return g.map(row => [...row]); }
+
+    function record(adj, k, cover, msg, highNodes = [], highEdges = []) {
+        history.push({
+            adj: cloneGraph(adj),
+            k,
+            cover: new Set(cover),
+            msg,
+            highNodes: new Set(highNodes),
+            highEdges: highEdges.map(e => [...e])
+        });
+    }
+
+    function kernelize(adj, state) {
+        let found = true;
+        while (found) {
+            found = false;
+            for (let i = 0; i < adj.length; i++) {
+                let neighbors = adj[i].filter(n => n !== -1);
+                if (neighbors.length > state.k) {
+                    record(adj, state.k, state.cover, `Kernel: Vertex ${i} degree (${neighbors.length}) > k. Adding to cover.`, [i]);
+                    state.cover.add(i);
+                    state.k--;
+                    // Remove vertex i
+                    for (let j = 0; j < adj.length; j++) {
+                        adj[j] = adj[j].map(n => n === i ? -1 : n);
+                    }
+                    adj[i].fill(-1);
+                    record(adj, state.k, state.cover, `Vertex ${i} and incident edges removed.`);
+                    found = true;
+                    break;
+                }
+            }
+            if (state.k < 0) break;
+        }
+    }
+
+    function solve(adj, k, cover) {
+        // Deep clone adj at start of recursive call to fix the backtracking bug
+        let localAdj = cloneGraph(adj);
+        let state = { k, cover: new Set(cover) };
+
+        kernelize(localAdj, state);
+
+        if (state.k < 0) {
+            record(localAdj, state.k, state.cover, "Branch failed: k < 0.");
+            return null;
+        }
+
+        // Find first remaining edge
+        let u = -1, v = -1;
+        for (let i = 0; i < localAdj.length; i++) {
+            let neighbor = localAdj[i].find(n => n !== -1);
+            if (neighbor !== undefined) { u = i; v = neighbor; break; }
+        }
+
+        if (u === -1) {
+            record(localAdj, state.k, state.cover, "Success! All edges covered.");
+            return state.cover;
+        }
+
+        if (state.k === 0) {
+            record(localAdj, state.k, state.cover, "Fail: Edges remain but budget k=0.", [], [[u, v]]);
+            return null;
+        }
+
+        record(localAdj, state.k, state.cover, `Branching on edge (${u}, ${v})`, [], [[u, v]]);
+
+        // Try U
+        let branchUCover = new Set(state.cover);
+        branchUCover.add(u);
+        let adjU = cloneGraph(localAdj);
+        for (let j = 0; j < adjU.length; j++) adjU[j] = adjU[j].map(n => n === u ? -1 : n);
+        adjU[u].fill(-1);
+        
+        let res = solve(adjU, state.k - 1, branchUCover);
+        if (res) return res;
+
+        // Try V
+        record(localAdj, state.k, state.cover, `Backtrack: Adding ${u} failed. Trying ${v}.`);
+        let branchVCover = new Set(state.cover);
+        branchVCover.add(v);
+        let adjV = cloneGraph(localAdj);
+        for (let j = 0; j < adjV.length; j++) adjV[j] = adjV[j].map(n => n === v ? -1 : n);
+        adjV[v].fill(-1);
+
+        return solve(adjV, state.k - 1, branchVCover);
+    }
+
+    function startSolver() {
+        const n = parseInt(document.getElementById('n').value);
+        const k = parseInt(document.getElementById('k').value);
+        const edges = document.getElementById('edgeInput').value.trim().split('\n');
+        
+        let adj = Array.from({ length: n }, () => []);
+        history = [];
+        document.getElementById('log').innerHTML = "";
+
+        edges.forEach(e => {
+            const [u, v] = e.split(/\s+/).map(Number);
+            if (!isNaN(u) && !isNaN(v) && u < n && v < n) {
+                if (!adj[u].includes(v)) { adj[u].push(v); adj[v].push(u); }
+            }
+        });
+
+        solve(adj, k, new Set());
+        currentStep = 0;
+        updateUI();
+        logMsg("History traced. Use 'Next' to step through.");
+    }
+
+    function updateUI() {
+        const stepTotal = history.length - 1;
+        document.getElementById('stepCounter').innerText = `Step: ${currentStep} / ${stepTotal}`;
+        document.getElementById('prevBtn').disabled = currentStep === 0;
+        document.getElementById('nextBtn').disabled = currentStep >= stepTotal;
+        render(history[currentStep]);
+    }
+
+    function moveStep(dir) {
+        currentStep += dir;
+        updateUI();
+    }
+
+    function render(state) {
+        const container = document.getElementById('viz_container');
+        container.innerHTML = "";
+        const w = container.clientWidth, h = container.clientHeight;
+        const svg = document.createElementNS(svgNS, "svg");
+        svg.setAttribute("width", "100%"); svg.setAttribute("height", "100%");
+        container.appendChild(svg);
+
+        const n = state.adj.length;
+        const points = [];
+        for (let i = 0; i < n; i++) {
+            const ang = (i * 2 * Math.PI / n) - Math.PI / 2;
+            points.push({ x: w/2 + 150 * Math.cos(ang), y: h/2 + 150 * Math.sin(ang) });
+        }
+
+        // Draw Edges
+        let seen = new Set();
+        for (let u = 0; u < n; u++) {
+            state.adj[u].forEach(v => {
+                if (v === -1) return;
+                let pair = [Math.min(u, v), Math.max(u, v)].join('-');
+                if (seen.has(pair)) return;
+                seen.add(pair);
+                const line = document.createElementNS(svgNS, "line");
+                line.setAttribute("x1", points[u].x); line.setAttribute("y1", points[u].y);
+                line.setAttribute("x2", points[v].x); line.setAttribute("y2", points[v].y);
+                line.setAttribute("class", "edge active");
+                
+                // Highlight branching edge
+                if (state.highEdges.some(e => (e[0]===u && e[1]===v) || (e[0]===v && e[1]===u))) {
+                    line.setAttribute("class", "edge highlight");
+                }
+                svg.appendChild(line);
+            });
+        }
+
+        // Draw Nodes
+        points.forEach((p, i) => {
+            const circle = document.createElementNS(svgNS, "circle");
+            circle.setAttribute("cx", p.x); circle.setAttribute("cy", p.y);
+            circle.setAttribute("r", 15);
+            let cls = "node";
+            if (state.cover.has(i)) cls += " covered";
+            else if (state.highNodes.has(i)) cls += " kernel";
+            circle.setAttribute("class", cls);
+            svg.appendChild(circle);
+
+            const txt = document.createElementNS(svgNS, "text");
+            txt.setAttribute("x", p.x); txt.setAttribute("y", p.y);
+            txt.setAttribute("text-anchor", "middle"); txt.setAttribute("dominant-baseline", "central");
+            txt.textContent = i;
+            txt.style.fontSize = "12px"; txt.style.fontWeight = "bold";
+            svg.appendChild(txt);
+        });
+
+        document.getElementById('log').innerHTML = `<div>Budget Left: <b>${state.k}</b></div><div>${state.msg}</div>`;
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edmonds-Karp vs Dinic Visualizer</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background: #f4f7f6; color: #333; margin: 0; padding: 20px; }
+        .container { max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: 350px 1fr; gap: 20px; }
+        .panel { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        h2 { margin-top: 0; font-size: 1.2rem; }
+        textarea { width: 100%; height: 120px; font-family: monospace; border: 1px solid #ccc; border-radius: 4px; padding: 10px; box-sizing: border-box; }
+        .controls { margin-top: 15px; display: flex; gap: 10px; flex-wrap: wrap; }
+        button { padding: 8px 15px; cursor: pointer; border: none; border-radius: 4px; background: #007bff; color: white; font-weight: bold; }
+        button:disabled { background: #ccc; }
+        button.secondary { background: #6c757d; }
+        .vis-area { position: relative; height: 500px; border: 1px solid #eee; border-radius: 8px; background: #fafafa; overflow: hidden; }
+        .log { margin-top: 15px; padding: 10px; background: #222; color: #0f0; font-family: monospace; font-size: 0.9rem; border-radius: 4px; min-height: 60px; }
+        .step-info { margin-top: 10px; font-weight: bold; text-align: center; }
+        svg { width: 100%; height: 100%; }
+        .node { fill: #fff; stroke: #333; stroke-width: 2px; }
+        .node.highlight { fill: #ffeb3b; stroke: #fbc02d; }
+        .node.source { fill: #8bc34a; }
+        .node.sink { fill: #f44336; }
+        .edge { stroke: #999; stroke-width: 2; marker-end: url(#arrowhead); }
+        .edge.highlight { stroke: #2196f3; stroke-width: 4; }
+        .edge-label { font-size: 12px; font-weight: bold; fill: #555; pointer-events: none; }
+        .level-label { font-size: 10px; fill: #888; }
+        .algo-toggle { display: flex; margin-bottom: 15px; border-radius: 4px; overflow: hidden; border: 1px solid #007bff; }
+        .algo-toggle div { flex: 1; padding: 8px; text-align: center; cursor: pointer; background: white; }
+        .algo-toggle div.active { background: #007bff; color: white; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="panel">
+        <h2>Network Configuration</h2>
+        <div class="algo-toggle" id="algoSelector">
+            <div id="btn-ek" class="active" onclick="setAlgo('ek')">Edmonds-Karp</div>
+            <div id="btn-dinic" onclick="setAlgo('dinic')">Dinic's</div>
+        </div>
+        <p style="font-size: 0.8rem; color: #666;">Format: source target capacity (one per line)</p>
+        <textarea id="graphInput">0 1 10
+0 2 10
+1 2 2
+1 3 4
+1 4 8
+2 4 9
+3 5 10
+4 3 6
+4 5 10</textarea>
+        <div class="controls">
+            <button onclick="initAlgorithm()">Reset & Run</button>
+            <div style="width: 100%; display: flex; justify-content: space-between; margin-top: 10px;">
+                <button class="secondary" id="prevBtn" onclick="changeStep(-1)" disabled>Back</button>
+                <button class="secondary" id="nextBtn" onclick="changeStep(1)" disabled>Forward</button>
+            </div>
+        </div>
+        <div class="step-info" id="stepCounter">Step: 0 / 0</div>
+        <div class="log" id="statusLog">Ready. Click Run to start.</div>
+    </div>
+
+    <div class="vis-area">
+        <svg id="canvas">
+            <defs>
+                <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="18" refY="3.5" orient="auto">
+                    <polygon points="0 0, 10 3.5, 0 7" fill="#999" />
+                </marker>
+            </defs>
+            <g id="edgesLayer"></g>
+            <g id="nodesLayer"></g>
+        </svg>
+    </div>
+</div>
+
+<script>
+    let currentAlgo = 'ek';
+    let history = [];
+    let currentStep = 0;
+    let nodes = [];
+    let edges = [];
+
+    function setAlgo(type) {
+        currentAlgo = type;
+        document.getElementById('btn-ek').className = type === 'ek' ? 'active' : '';
+        document.getElementById('btn-dinic').className = type === 'dinic' ? 'active' : '';
+        initAlgorithm();
+    }
+
+    function deepClone(obj) { return JSON.parse(JSON.stringify(obj)); }
+
+    function parseGraph() {
+        const text = document.getElementById('graphInput').value.trim();
+        const lines = text.split('\n');
+        const edgeList = [];
+        const nodeSet = new Set();
+        
+        lines.forEach(line => {
+            const [u, v, cap] = line.split(/\s+/).map(Number);
+            if (!isNaN(u) && !isNaN(v) && !isNaN(cap)) {
+                edgeList.push({ u, v, cap, flow: 0, rev: null });
+                nodeSet.add(u);
+                nodeSet.add(v);
+            }
+        });
+
+        const sortedNodes = Array.from(nodeSet).sort((a,b) => a-b);
+        const nodeMap = {};
+        const radius = 180;
+        const centerX = 300, centerY = 250;
+
+        nodes = sortedNodes.map((id, i) => {
+            const angle = (i / sortedNodes.length) * 2 * Math.PI;
+            nodeMap[id] = i;
+            return {
+                id,
+                x: centerX + radius * Math.cos(angle),
+                y: centerY + radius * Math.sin(angle),
+                level: -1
+            };
+        });
+
+        edges = edgeList.map(e => ({...e, u: nodeMap[e.u], v: nodeMap[e.v]}));
+        
+        // Add residual edges
+        const n = edges.length;
+        for(let i=0; i<n; i++) {
+            const e = edges[i];
+            const revEdge = { u: e.v, v: e.u, cap: 0, flow: 0, isResidual: true };
+            edges.push(revEdge);
+            e.rev = edges.length - 1;
+            revEdge.rev = i;
+        }
+    }
+
+    function recordState(msg, highlights = { nodes: [], edges: [] }) {
+        history.push({
+            edges: deepClone(edges),
+            nodes: deepClone(nodes),
+            message: msg,
+            highlights: deepClone(highlights)
+        });
+    }
+
+    function runEdmondsKarp() {
+        const s = 0, t = nodes.length - 1;
+        let totalFlow = 0;
+
+        while (true) {
+            let parent = new Array(nodes.length).fill(-1);
+            let edgeFrom = new Array(nodes.length).fill(-1);
+            let queue = [s];
+            parent[s] = s;
+            
+            recordState("Starting BFS to find shortest augmenting path.");
+
+            let found = false;
+            while(queue.length > 0 && !found) {
+                let u = queue.shift();
+                for(let i=0; i<edges.length; i++) {
+                    let e = edges[i];
+                    if(e.u === u && parent[e.v] === -1 && e.cap - e.flow > 0) {
+                        parent[e.v] = u;
+                        edgeFrom[e.v] = i;
+                        recordState(`BFS exploring: ${nodes[u].id} -> ${nodes[e.v].id}`, { nodes: [u, e.v], edges: [i] });
+                        if(e.v === t) { found = true; break; }
+                        queue.push(e.v);
+                    }
+                }
+            }
+
+            if (parent[t] === -1) break;
+
+            let push = Infinity;
+            let curr = t;
+            let pathEdges = [];
+            while(curr !== s) {
+                let idx = edgeFrom[curr];
+                push = Math.min(push, edges[idx].cap - edges[idx].flow);
+                pathEdges.push(idx);
+                curr = parent[curr];
+            }
+
+            totalFlow += push;
+            curr = t;
+            while(curr !== s) {
+                let idx = edgeFrom[curr];
+                edges[idx].flow += push;
+                edges[edges[idx].rev].flow -= push;
+                curr = parent[curr];
+            }
+            recordState(`Found path! Pushing ${push} units of flow. Total: ${totalFlow}`, { nodes: [], edges: pathEdges });
+        }
+        recordState(`Finished! Maximum flow is ${totalFlow}`);
+    }
+
+    function runDinic() {
+        const s = 0, t = nodes.length - 1;
+        let totalFlow = 0;
+
+        while (true) {
+            // BFS for Level Graph
+            nodes.forEach(n => n.level = -1);
+            nodes[s].level = 0;
+            let q = [s];
+            recordState("Building Level Graph via BFS...");
+            
+            while(q.length > 0) {
+                let u = q.shift();
+                for(let i=0; i<edges.length; i++) {
+                    let e = edges[i];
+                    if(e.u === u && e.cap - e.flow > 0 && nodes[e.v].level === -1) {
+                        nodes[e.v].level = nodes[u].level + 1;
+                        q.push(e.v);
+                    }
+                }
+            }
+
+            if(nodes[t].level === -1) break;
+            recordState("Level Graph complete. Starting DFS phases (Blocking Flow).");
+
+            // DFS for Blocking Flow
+            function dfs(u, pushed) {
+                if(pushed === 0 || u === t) return pushed;
+                for(let i=0; i<edges.length; i++) {
+                    let e = edges[i];
+                    if(e.u === u && nodes[e.v].level === nodes[u].level + 1 && e.cap - e.flow > 0) {
+                        let tr = dfs(e.v, Math.min(pushed, e.cap - e.flow));
+                        if(tr === 0) continue;
+                        e.flow += tr;
+                        edges[e.rev].flow -= tr;
+                        recordState(`DFS: Found path in Level Graph, pushing ${tr}`, { nodes: [u, e.v], edges: [i] });
+                        return tr;
+                    }
+                }
+                return 0;
+            }
+
+            while(true) {
+                let pushed = dfs(s, Infinity);
+                if(pushed === 0) break;
+                totalFlow += pushed;
+            }
+        }
+        recordState(`Finished! Maximum flow is ${totalFlow}`);
+    }
+
+    function initAlgorithm() {
+        history = [];
+        currentStep = 0;
+        parseGraph();
+        if(currentAlgo === 'ek') runEdmondsKarp();
+        else runDinic();
+        
+        updateUI();
+        document.getElementById('nextBtn').disabled = false;
+        document.getElementById('prevBtn').disabled = true;
+    }
+
+    function changeStep(dir) {
+        currentStep = Math.max(0, Math.min(history.length - 1, currentStep + dir));
+        updateUI();
+        document.getElementById('prevBtn').disabled = currentStep === 0;
+        document.getElementById('nextBtn').disabled = currentStep === history.length - 1;
+    }
+
+    function updateUI() {
+        const state = history[currentStep];
+        const nodesLayer = document.getElementById('nodesLayer');
+        const edgesLayer = document.getElementById('edgesLayer');
+        const status = document.getElementById('statusLog');
+        const counter = document.getElementById('stepCounter');
+
+        nodesLayer.innerHTML = '';
+        edgesLayer.innerHTML = '';
+        status.innerText = state.message;
+        counter.innerText = `Step: ${currentStep + 1} / ${history.length}`;
+
+        state.edges.forEach((e, idx) => {
+            if(e.isResidual && e.cap === 0) return; // Hide standard residual backs
+            const u = state.nodes[e.u];
+            const v = state.nodes[e.v];
+            const isHighlighted = state.highlights.edges.includes(idx);
+            
+            const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
+            line.setAttribute("x1", u.x); line.setAttribute("y1", u.y);
+            line.setAttribute("x2", v.x); line.setAttribute("y2", v.y);
+            line.setAttribute("class", `edge ${isHighlighted ? 'highlight' : ''}`);
+            edgesLayer.appendChild(line);
+
+            const midX = (u.x + v.x) / 2;
+            const midY = (u.y + v.y) / 2;
+            const label = document.createElementNS("http://www.w3.org/2000/svg", "text");
+            label.setAttribute("x", midX); label.setAttribute("y", midY - 5);
+            label.setAttribute("class", "edge-label");
+            label.textContent = `${e.flow}/${e.cap}`;
+            edgesLayer.appendChild(label);
+        });
+
+        state.nodes.forEach((n, idx) => {
+            const g = document.createElementNS("http://www.w3.org/2000/svg", "g");
+            const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+            circle.setAttribute("cx", n.x); circle.setAttribute("cy", n.y);
+            circle.setAttribute("r", 15);
+            
+            let cls = "node";
+            if(idx === 0) cls += " source";
+            else if(idx === state.nodes.length - 1) cls += " sink";
+            if(state.highlights.nodes.includes(idx)) cls += " highlight";
+            circle.setAttribute("class", cls);
+
+            const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
+            text.setAttribute("x", n.x); text.setAttribute("y", n.y + 5);
+            text.setAttribute("text-anchor", "middle");
+            text.textContent = n.id;
+
+            if(n.level !== -1) {
+                const lvl = document.createElementNS("http://www.w3.org/2000/svg", "text");
+                lvl.setAttribute("x", n.x); lvl.setAttribute("y", n.y - 20);
+                lvl.setAttribute("class", "level-label");
+                lvl.setAttribute("text-anchor", "middle");
+                lvl.textContent = `L:${n.level}`;
+                g.appendChild(lvl);
+            }
+
+            g.appendChild(circle);
+            g.appendChild(text);
+            nodesLayer.appendChild(g);
+        });
+    }
+
+    // Init on load
+    initAlgorithm();
+</script>
+</body>
+</html>
